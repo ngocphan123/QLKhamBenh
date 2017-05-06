@@ -438,7 +438,7 @@ if( $savedata )
 					$content .= AUTHOR_FILEHEAD . "\n\n";
 					$content .= "if ( ! defined( 'NV_IS_MOD_" . strtoupper( $data_system['module_data'] ) . "' ) ) die( 'Stop!!!' );\n\n";
 
-					$content .= "\$page_title = \$module_info['site_title'];\n";
+					$content .= "\$page_title = \$module_info['custom_title'];\n";
 					$content .= "\$key_words = \$module_info['keywords'];\n\n";
 
 					$content .= "\$array_data = array();\n\n";

@@ -18,9 +18,6 @@ $lang_translator['langtype'] = 'lang_module';
 
 $lang_module['error_title'] = 'Lỗi truy cập';
 $lang_module['error_content'] = 'Module cần truy cập từ localhost và đăng nhập quản trị tối cao';
-$lang_module['chooseAll'] = 'Chọn hết';
-$lang_module['type_hour'] = 'Giờ';
-$lang_module['type_min'] = 'Phút';
 
 $lang_module['main'] = 'Xây dựng module';
 $lang_module['theme'] = 'Xây dựng theme';
@@ -187,10 +184,8 @@ $lang_module['themecopy_layout'] = 'Các layout';
 $lang_module['themecopy_layout_warnning'] = 'Bạn cần giữ lại ít nhất một layout thì giao diện mới có thể hoạt động được';
 $lang_module['themecopy_layout_warnning1'] = 'Chưa có layout nào được chọn';
 $lang_module['themecopy_module'] = 'Các module';
-$lang_module['themecopy_block'] = 'Các blocks';
 $lang_module['themecopy_select_other'] = 'Các lựa chọn khác';
 $lang_module['themecopy_start'] = 'Bắt đầu copy';
-$lang_module['themecopy_defaultlayout'] = 'Layout mặc định';
 $lang_module['themecopy_new'] = 'Tên giao diện mới';
 $lang_module['themecopy_new_warnning'] = 'Vui lòng nhập tên giao diện mới';
 $lang_module['themecopy_waiting'] = 'Đang xử lý, vui lòng đợi';
@@ -199,8 +194,6 @@ $lang_module['themecopy_error_exists'] = 'Giao diện này hiện có trên hệ
 $lang_module['themecopy_recopy'] = 'Làm lại';
 $lang_module['themecopy_error_creat_folder'] = 'Không thể tạo thư mục';
 $lang_module['themecopy_error_copy_file'] = 'Không thể copy file';
-$lang_module['themecopy_error_load_config'] = 'Không thể đọc file cấu hình config.ini của giao diện';
-$lang_module['themecopy_error_save_config'] = 'Không thể ghi file cấu hình config.ini cho giao diện mới';
 $lang_module['themecopy_success'] = 'Thực hiện hoàn tất, nhấp vào đây để tới trang quản lý giao diện';
 
 $lang_module['thememdcp'] = 'Công cụ sao chép giao diện của từng module';
