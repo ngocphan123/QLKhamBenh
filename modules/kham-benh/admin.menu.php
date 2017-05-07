@@ -10,3 +10,4 @@
 
 if ( ! defined( 'NV_ADMIN' ) ) die( 'Stop!!!' );
 
+$submenu['doctor'] = $lang_module['doctor'];
