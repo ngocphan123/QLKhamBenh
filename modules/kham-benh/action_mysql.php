@@ -9,7 +9,7 @@
  */
 
 if ( ! defined( 'NV_IS_FILE_MODULES' ) ) die( 'Stop!!!' );
-
+//test
 $sql_drop_module = array();
 $sql_drop_module[] = "DROP TABLE IF EXISTS " . $db_config['prefix'] . "_" . $lang . "_" . $module_data . "_doctor";
 $sql_drop_module[] = "DROP TABLE IF EXISTS " . $db_config['prefix'] . "_" . $lang . "_" . $module_data . "_drug";
