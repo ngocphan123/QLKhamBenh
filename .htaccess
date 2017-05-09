@@ -48,8 +48,6 @@ RewriteRule ^ robots.php?action=%{HTTP_HOST} [L]
 RewriteRule ^(.*?)sitemap\.xml$ index.php?nv=SitemapIndex [L]
 RewriteRule ^(.*?)sitemap\-([a-z]{2})\.xml$ index.php?language=$2&nv=SitemapIndex [L]
 RewriteRule ^(.*?)sitemap\-([a-z]{2})\.([a-zA-Z0-9-]+)\.xml$ index.php?language=$2&nv=$3&op=sitemap [L]
-RewriteRule ^([a-z]{2})\/seek\/$ index.php?language=$1&nv=seek&%{QUERY_STRING} [L]
-RewriteRule ^([a-z]{2})\/([a-zA-Z0-9\-]+)\/search\/$ index.php?language=$1&nv=$2&op=search&%{QUERY_STRING} [L]
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule (.*)(\/|\.html)$ index.php

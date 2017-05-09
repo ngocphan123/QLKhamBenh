@@ -89,3 +89,9 @@ $lang_module['specialist'] = 'Specialist';
 $lang_module['position'] = 'Position';
 $lang_module['business'] = 'Business';
 $lang_module['story'] = 'Story';
+
+//Lang for function patient
+$lang_module['patient'] = 'patient';
+$lang_module['code_patient'] = 'Code patient';
+$lang_module['year'] = 'Year';
+$lang_module['sex'] = 'Sex';

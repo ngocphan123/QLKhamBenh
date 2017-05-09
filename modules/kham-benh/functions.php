@@ -10,4 +10,5 @@
 
 if ( ! defined( 'NV_SYSTEM' ) ) die( 'Stop!!!' );
 
-define( 'NV_IS_MOD_SIM_SO_DEP', true );
+define( 'NV_IS_MOD_KHAM_BENH', true );
+require_once NV_ROOTDIR . '/modules/' . $module_file . '/global.functions.php';

@@ -116,3 +116,18 @@ $lang_module['specialist'] = 'Chuyên khoa';
 $lang_module['position'] = 'Chức vụ';
 $lang_module['business'] = 'Nơi công tác';
 $lang_module['story'] = 'Tiểu sử';
+
+//Lang for function patient
+$lang_module['patient'] = 'Quản lý bệnh nhân';
+$lang_module['code_patient'] = 'Mã bệnh nhân';
+$lang_module['year'] = 'Tuổi';
+$lang_module['sex'] = 'Giới tính';
+$lang_module['sex_male'] = 'Nam';
+$lang_module['sex_female'] = 'Nữ';
+$lang_module['name_patient'] = 'Họ & tên';
+$lang_module['status_patient'] = 'Trạng thái';
+$lang_module['status_patient_1'] = 'Chưa khám';
+$lang_module['status_patient_2'] = 'Đã khám';
+$lang_module['error_patient_empty'] = 'Lỗi: không được để trống';
+$lang_module['error_patient_email'] = 'Lỗi: Email không đúng chuẩn. Ví dụ vidu@gmail.com';
+$lang_module['error_patient_year'] = 'Lỗi: Tuổi phải lớn hơn 0';
