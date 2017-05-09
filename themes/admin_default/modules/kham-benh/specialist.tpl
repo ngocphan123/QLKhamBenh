@@ -13,7 +13,7 @@
 		</div>
 		<div class="col-xs-12 col-md-3">
 			<div class="form-group">
-				<input class="btn btn-primary" type="submit" value="{LANG.search_submit}" />
+				<input class="btn btn-primary" type="submit" value="{LANG.search}" />
 			</div>
 		</div>
 	</div>

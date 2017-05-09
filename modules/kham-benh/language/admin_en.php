@@ -19,9 +19,9 @@ $lang_translator['langtype'] = 'lang_module';
 $lang_module['main'] = 'Main';
 $lang_module['config'] = 'Config';
 $lang_module['save'] = 'Save';
-
+$lang_module['search'] = 'search';
 //Lang for function doctor
-$lang_module['doctor'] = 'doctor';
+$lang_module['doctor'] = 'Doctor';
 $lang_module['name'] = 'Name';
 $lang_module['datetime'] = 'Datetime';
 $lang_module['specialist'] = 'Specialist';
