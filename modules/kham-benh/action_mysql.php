@@ -50,6 +50,7 @@ $sql_create_module[] = "CREATE TABLE " . $db_config['prefix'] . "_" . $lang . "_
   PRIMARY KEY (id)
 ) ENGINE=MyISAM";
 
+
 $sql_create_module[] = "CREATE TABLE " . $db_config['prefix'] . "_" . $lang . "_" . $module_data . "_patient(
   id int(11) unsigned NOT NULL AUTO_INCREMENT,
   code_patient varchar(250) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'Mã bệnh nhân',
@@ -73,5 +74,14 @@ $sql_create_module[] = "CREATE TABLE " . $db_config['prefix'] . "_" . $lang . "_
   money int(11) unsigned NOT NULL COMMENT 'Giá thuốc',
   info_drug text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'Thông tin thuốc',
   status tinyint(1) unsigned NOT NULL COMMENT 'Còn thuốc hay hết thuốc',
+  PRIMARY KEY (id)
+) ENGINE=MyISAM";
+
+$sql_create_module[] = "CREATE TABLE " . $db_config['prefix'] . "_" . $lang . "_" . $module_data . "_order(
+  id int(11) unsigned NOT NULL AUTO_INCREMENT,
+  id_patient int(11) NOT NULL COMMENT 'Mã bệnh nhân',
+  id_doctor int(11)  NOT NULL COMMENT 'Bác sĩ',
+  date_medical int(11)  NOT NULL COMMENT 'ngày khám',
+  id_specialist int(11)  NOT NULL COMMENT 'Chuyên khoa',
   PRIMARY KEY (id)
 ) ENGINE=MyISAM";
