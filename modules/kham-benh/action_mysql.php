@@ -30,18 +30,6 @@ $sql_create_module[] = "CREATE TABLE " . $db_config['prefix'] . "_" . $lang . "_
   PRIMARY KEY (id)
 ) ENGINE=MyISAM";
 
-$sql_create_module[] = "CREATE TABLE " . $db_config['prefix'] . "_" . $lang . "_" . $module_data . "_drug(
-  id int(11) unsigned NOT NULL AUTO_INCREMENT,
-  code_drug varchar(250) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'Mã Thuốc',
-  name varchar(250) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'Tên thuốc',
-  date_produce int(11) unsigned NOT NULL COMMENT 'Ngày sản xuất',
-  date_import int(11) unsigned NOT NULL COMMENT 'Ngày nhập',
-  time-expired int(11) unsigned NOT NULL COMMENT 'Ngày hết hạn',
-  money int(11) unsigned NOT NULL COMMENT 'Giá thuốc',
-  info_drug text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'Thông tin thuốc',
-  status tinyint(1) unsigned NOT NULL COMMENT 'Còn thuốc hay hết thuốc',
-  PRIMARY KEY (id)
-) ENGINE=MyISAM";
 
 $sql_create_module[] = "CREATE TABLE " . $db_config['prefix'] . "_" . $lang . "_" . $module_data . "_history(
   id int(11) unsigned NOT NULL AUTO_INCREMENT,
@@ -64,5 +52,18 @@ $sql_create_module[] = "CREATE TABLE " . $db_config['prefix'] . "_" . $lang . "_
   sex tinyint(1) unsigned NOT NULL COMMENT 'Giới tính',
   address varchar(250) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'Địa chỉ',
   status tinyint(1) unsigned NOT NULL COMMENT 'Trạng thái khám bệnh',
+  PRIMARY KEY (id)
+) ENGINE=MyISAM";
+
+$sql_create_module[] = "CREATE TABLE " . $db_config['prefix'] . "_" . $lang . "_" . $module_data . "_drug(
+  id int(11) unsigned NOT NULL AUTO_INCREMENT,
+  code_drug varchar(250) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'Mã Thuốc',
+  name varchar(250) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'Tên thuốc',
+  date_produce int(11) unsigned NOT NULL COMMENT 'Ngày sản xuất',
+  date_import int(11) unsigned NOT NULL COMMENT 'Ngày nhập',
+  time_expired int(11) unsigned NOT NULL COMMENT 'Ngày hết hạn',
+  money int(11) unsigned NOT NULL COMMENT 'Giá thuốc',
+  info_drug text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'Thông tin thuốc',
+  status tinyint(1) unsigned NOT NULL COMMENT 'Còn thuốc hay hết thuốc',
   PRIMARY KEY (id)
 ) ENGINE=MyISAM";
