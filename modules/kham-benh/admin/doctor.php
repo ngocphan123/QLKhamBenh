@@ -5,7 +5,7 @@
  * @Author VINADES.,JSC (contact@vinades.vn)
  * @Copyright (C) 2017 VINADES.,JSC. All rights reserved
  * @License GNU/GPL version 2 or any later version
- * @Createdate Tue, 09 May 2017 10:41:21 GMT
+ * @Createdate Tue, 09 May 2017 11:44:39 GMT
  */
 
 if ( ! defined( 'NV_IS_FILE_ADMIN' ) ) die( 'Stop!!!' );
@@ -33,9 +33,10 @@ if ( $nv_Request->isset_request( 'submit', 'post' ) )
 	$row['specialist_id'] = $nv_Request->get_int( 'specialist_id', 'post', 0 );
 	$row['position'] = $nv_Request->get_title( 'position', 'post', '' );
 	$row['address'] = $nv_Request->get_title( 'address', 'post', '' );
-	$row['phone'] = $nv_Request->get_string( 'phone', 'post', 0 );
+	$row['phone'] = $nv_Request->get_title( 'phone', 'post', '' );
 	$row['business'] = $nv_Request->get_title( 'business', 'post', '' );
 	$row['story'] = $nv_Request->get_string( 'story', 'post', '' );
+
 	if( ! empty( $row['datetime'] ) and preg_match( '/^([0-9]{1,2})\/([0-9]{1,2})\/([0-9]{4})$/', $row['datetime'], $m ) )
 		{
 			$row['datetime'] = mktime( 0, 0, 0, $m[2], $m[1], $m[3] );
@@ -44,9 +45,9 @@ if ( $nv_Request->isset_request( 'submit', 'post' ) )
 	{
 		$error[] = $lang_module['error_required_name'];
 	}
-	elseif( empty( $row['position'] ) )
+	elseif( empty( $row['phone'] ) )
 	{
-		$error[] = $lang_module['error_required_position'];
+		$error[] = $lang_module['error_required_phone'];
 	}
 
 	if( empty( $error ) )
@@ -66,7 +67,7 @@ if ( $nv_Request->isset_request( 'submit', 'post' ) )
 			$stmt->bindParam( ':specialist_id', $row['specialist_id'], PDO::PARAM_INT );
 			$stmt->bindParam( ':position', $row['position'], PDO::PARAM_STR );
 			$stmt->bindParam( ':address', $row['address'], PDO::PARAM_STR );
-			$stmt->bindParam( ':phone', $row['phone'], PDO::PARAM_INT );
+			$stmt->bindParam( ':phone', $row['phone'], PDO::PARAM_STR );
 			$stmt->bindParam( ':business', $row['business'], PDO::PARAM_STR );
 			$stmt->bindParam( ':story', $row['story'], PDO::PARAM_STR, strlen($row['story']) );
 
@@ -102,7 +103,7 @@ else
 	$row['specialist_id'] = 0;
 	$row['position'] = '';
 	$row['address'] = '';
-	$row['phone'] = 0;
+	$row['phone'] = '';
 	$row['business'] = '';
 	$row['story'] = '';
 }
@@ -130,7 +131,7 @@ if ( ! $nv_Request->isset_request( 'id', 'post,get' ) )
 
 	if( ! empty( $q ) )
 	{
-		$db->where( 'name LIKE :q_name OR datetime LIKE :q_datetime OR position LIKE :q_position OR phone LIKE :q_phone OR business LIKE :q_business' );
+		$db->where( 'name LIKE :q_name OR datetime LIKE :q_datetime OR specialist_id LIKE :q_specialist_id OR position LIKE :q_position OR address LIKE :q_address OR phone LIKE :q_phone OR business LIKE :q_business' );
 	}
 	$sth = $db->prepare( $db->sql() );
 
@@ -138,7 +139,9 @@ if ( ! $nv_Request->isset_request( 'id', 'post,get' ) )
 	{
 		$sth->bindValue( ':q_name', '%' . $q . '%' );
 		$sth->bindValue( ':q_datetime', '%' . $q . '%' );
+		$sth->bindValue( ':q_specialist_id', '%' . $q . '%' );
 		$sth->bindValue( ':q_position', '%' . $q . '%' );
+		$sth->bindValue( ':q_address', '%' . $q . '%' );
 		$sth->bindValue( ':q_phone', '%' . $q . '%' );
 		$sth->bindValue( ':q_business', '%' . $q . '%' );
 	}
@@ -155,7 +158,9 @@ if ( ! $nv_Request->isset_request( 'id', 'post,get' ) )
 	{
 		$sth->bindValue( ':q_name', '%' . $q . '%' );
 		$sth->bindValue( ':q_datetime', '%' . $q . '%' );
+		$sth->bindValue( ':q_specialist_id', '%' . $q . '%' );
 		$sth->bindValue( ':q_position', '%' . $q . '%' );
+		$sth->bindValue( ':q_address', '%' . $q . '%' );
 		$sth->bindValue( ':q_phone', '%' . $q . '%' );
 		$sth->bindValue( ':q_business', '%' . $q . '%' );
 	}

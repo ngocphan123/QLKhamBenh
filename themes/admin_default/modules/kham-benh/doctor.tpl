@@ -31,7 +31,9 @@
 					<th class="w100">{LANG.number}</th>
 					<th>{LANG.name}</th>
 					<th>{LANG.datetime}</th>
+					<th>{LANG.specialist_id}</th>
 					<th>{LANG.position}</th>
+					<th>{LANG.address}</th>
 					<th>{LANG.phone}</th>
 					<th>{LANG.business}</th>
 					<th class="w150">&nbsp;</th>
@@ -40,7 +42,7 @@
 			<!-- BEGIN: generate_page -->
 			<tfoot>
 				<tr>
-					<td class="text-center" colspan="7">{NV_GENERATE_PAGE}</td>
+					<td class="text-center" colspan="9">{NV_GENERATE_PAGE}</td>
 				</tr>
 			</tfoot>
 			<!-- END: generate_page -->
@@ -50,7 +52,9 @@
 					<td> {VIEW.number} </td>
 					<td> {VIEW.name} </td>
 					<td> {VIEW.datetime} </td>
+					<td> {VIEW.specialist_id} </td>
 					<td> {VIEW.position} </td>
+					<td> {VIEW.address} </td>
 					<td> {VIEW.phone} </td>
 					<td> {VIEW.business} </td>
 					<td class="text-center"><i class="fa fa-edit fa-lg">&nbsp;</i> <a href="{VIEW.link_edit}#edit">{LANG.edit}</a> - <em class="fa fa-trash-o fa-lg">&nbsp;</em> <a href="{VIEW.link_delete}" onclick="return confirm(nv_is_del_confirm[0]);">{LANG.delete}</a></td>
@@ -78,7 +82,7 @@
 	<div class="form-group">
 		<label class="col-sm-5 col-md-4 control-label"><strong>{LANG.datetime}</strong></label>
 		<div class="col-sm-19 col-md-20">
-			<input class="form-control datepicker" type="text" name="datetime" id="datetime" value="{ROW.datetime}" />
+			<input class="form-control" type="text" name="datetime" id="datetime" value="{ROW.datetime}" />
 		</div>
 	</div>
 	<div class="form-group">
@@ -93,9 +97,9 @@
 		</div>
 	</div>
 	<div class="form-group">
-		<label class="col-sm-5 col-md-4 control-label"><strong>{LANG.position}</strong> <span class="red">(*)</span></label>
+		<label class="col-sm-5 col-md-4 control-label"><strong>{LANG.position}</strong></label>
 		<div class="col-sm-19 col-md-20">
-			<input class="form-control" type="text" name="position" value="{ROW.position}" required="required" oninvalid="setCustomValidity( nv_required )" oninput="setCustomValidity('')" />
+			<input class="form-control" type="text" name="position" value="{ROW.position}" />
 		</div>
 	</div>
 	<div class="form-group">
@@ -105,9 +109,9 @@
 		</div>
 	</div>
 	<div class="form-group">
-		<label class="col-sm-5 col-md-4 control-label"><strong>{LANG.phone}</strong></label>
+		<label class="col-sm-5 col-md-4 control-label"><strong>{LANG.phone}</strong> <span class="red">(*)</span></label>
 		<div class="col-sm-19 col-md-20">
-			<input class="form-control" type="text" name="phone" value="{ROW.phone}" pattern="^[0-9]*$"  oninvalid="setCustomValidity( nv_digits )" oninput="setCustomValidity('')" />
+			<input class="form-control" type="text" name="phone" value="{ROW.phone}" required="required" oninvalid="setCustomValidity( nv_required )" oninput="setCustomValidity('')" />
 		</div>
 	</div>
 	<div class="form-group">
@@ -125,6 +129,7 @@
 	<div class="form-group" style="text-align: center"><input class="btn btn-primary" name="submit" type="submit" value="{LANG.save}" /></div>
 </form>
 </div></div>
+
 <script type="text/javascript" data-show="after">
 	$(function() {
 		$("#datetime").datepicker({

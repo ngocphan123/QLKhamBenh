@@ -49,3 +49,6 @@ $lang_module['search_title'] = 'Enter keywords searching';
 $lang_module['search_submit'] = 'Search';
 $lang_module['address'] = 'Address';
 $lang_module['phone'] = 'Phone';
+
+//Lang for function doctor
+$lang_module['error_required_phone'] = 'Error: Required fields enter the Phone';

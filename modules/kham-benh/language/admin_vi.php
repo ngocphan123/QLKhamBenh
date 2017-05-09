@@ -51,3 +51,6 @@ $lang_module['search_title'] = 'Nhập từ khóa tìm kiếm';
 $lang_module['search_submit'] = 'Tìm kiếm';
 $lang_module['address'] = 'Địa chỉ';
 $lang_module['phone'] = 'Số điện thoại';
+
+//Lang for function doctor
+$lang_module['error_required_phone'] = 'Lỗi: bạn cần nhập dữ liệu cho Số điện thoại';
