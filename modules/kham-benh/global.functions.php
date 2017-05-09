@@ -8,8 +8,9 @@
  * @Createdate Tue, 19 Jul 2011 09:07:26 GMT
  */
 
-if (!defined('NV_SYSTEM')) die('Stop!!!');
-
+ if (!defined('NV_MAINFILE')) {
+    die('Stop!!!');
+}
 global $arr_sex, $arr_status;
 
 $arr_status = array(
@@ -37,6 +38,3 @@ $arr_sex = array(
         'name' => $lang_module['sex_female']
     ),
 );
-
-
-define('NV_IS_FILE_ADMIN', true);
