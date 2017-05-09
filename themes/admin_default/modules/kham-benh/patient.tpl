@@ -34,9 +34,10 @@
 			<thead>
 				<tr>
 					<th class="w100">{LANG.number}</th>
+					<th>{LANG.code_patient}</th>
 					<th>{LANG.name_patient}</th>
 					<th>{LANG.year}</th>
-					<th>{LANG.email}</th>
+					<th>{LANG.patient_email}</th>
 					<th>{LANG.phone}</th>
 					<th>{LANG.sex}</th>
 					<th>{LANG.address}</th>
@@ -55,6 +56,7 @@
 				<!-- BEGIN: loop -->
 				<tr>
 					<td> {VIEW.number} </td>
+					<td> {VIEW.code_patient} </td>
 					<td> {VIEW.name} </td>
 					<td> {VIEW.year} </td>
 					<td> {VIEW.email} </td>
@@ -93,7 +95,7 @@
 				</div>
 			</div>
 			<div class="form-group">
-				<label class="col-sm-5 col-md-4 control-label"><strong>{LANG.email}</strong></label>
+				<label class="col-sm-5 col-md-4 control-label"><strong>{LANG.patient_email}</strong></label>
 				<div class="col-sm-19 col-md-20">
 					<input class="form-control" type="text" name="email" value="{ROW.email}" />
 				</div>
@@ -138,7 +140,6 @@
 <script type="text/javascript" src="{NV_BASE_SITEURL}{NV_ASSETS_DIR}/js/jquery/jquery.validate.min.js"></script>
 <script>
 	$(document).ready(function() {
-		alert('abc');
 		$('#insert_patient').validate({// initialize the plugin
 			rules : {
 				name : {
@@ -190,10 +191,6 @@
 					min : '{LANG.error_patient_year}'
 				},
 			},
-			submitHandler : function(form) {// for demo
-				alert('valid form submitted');
-				return false;
-			}
 		});
 	});
 </script>

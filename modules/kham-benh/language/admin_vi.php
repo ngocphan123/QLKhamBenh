@@ -33,6 +33,7 @@ $lang_module['story'] = 'Tiểu sử';
 //Lang for function patient
 $lang_module['patient'] = 'Quản lý bệnh nhân';
 $lang_module['code_patient'] = 'Mã bệnh nhân';
+$lang_module['patient_email'] = 'Email';
 $lang_module['year'] = 'Tuổi';
 $lang_module['sex'] = 'Giới tính';
 $lang_module['sex_male'] = 'Nam';
