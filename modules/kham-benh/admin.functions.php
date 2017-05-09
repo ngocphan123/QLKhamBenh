@@ -13,4 +13,4 @@ if ( ! defined( 'NV_ADMIN' ) or ! defined( 'NV_MAINFILE' ) or ! defined( 'NV_IS_
 define( 'NV_IS_FILE_ADMIN', true );
 
 
-$allow_func = array( 'main', 'doctor');
+$allow_func = array( 'main', 'doctor', 'specialist');

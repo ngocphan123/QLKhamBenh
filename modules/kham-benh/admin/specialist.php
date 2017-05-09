@@ -5,7 +5,7 @@
  * @Author VINADES.,JSC (contact@vinades.vn)
  * @Copyright (C) 2017 VINADES.,JSC. All rights reserved
  * @License GNU/GPL version 2 or any later version
- * @Createdate Sat, 06 May 2017 10:14:29 GMT
+ * @Createdate Tue, 09 May 2017 08:22:22 GMT
  */
 
 if ( ! defined( 'NV_IS_FILE_ADMIN' ) ) die( 'Stop!!!' );
@@ -16,7 +16,7 @@ if ( $nv_Request->isset_request( 'delete_id', 'get' ) and $nv_Request->isset_req
 	$delete_checkss = $nv_Request->get_string( 'delete_checkss', 'get' );
 	if( $id > 0 and $delete_checkss == md5( $id . NV_CACHE_PREFIX . $client_info['session_id'] ) )
 	{
-		$db->query('DELETE FROM nv4_vi_kham_benh_doctor  WHERE id = ' . $db->quote( $id ) );
+		$db->query('DELETE FROM ' . NV_PREFIXLANG . '_' . $module_data . '_specialist  WHERE id = ' . $db->quote( $id ) );
 		$nv_Cache->delMod( $module_name );
 		Header( 'Location: ' . NV_BASE_ADMINURL . 'index.php?' . NV_LANG_VARIABLE . '=' . NV_LANG_DATA . '&' . NV_NAME_VARIABLE . '=' . $module_name . '&' . NV_OP_VARIABLE . '=' . $op );
 		die();
@@ -28,14 +28,13 @@ $error = array();
 $row['id'] = $nv_Request->get_int( 'id', 'post,get', 0 );
 if ( $nv_Request->isset_request( 'submit', 'post' ) )
 {
-	$row['name'] = $nv_Request->get_title( 'name', 'post', '' );
-	$row['datetime'] = $nv_Request->get_int( 'datetime', 'post', 0 );
-	$row['specialist'] = $nv_Request->get_title( 'specialist', 'post', '' );
-	$row['position'] = $nv_Request->get_title( 'position', 'post', '' );
-	$row['address'] = $nv_Request->get_title( 'address', 'post', '' );
-	$row['phone'] = $nv_Request->get_int( 'phone', 'post', 0 );
-	$row['business'] = $nv_Request->get_title( 'business', 'post', '' );
-	$row['story'] = $nv_Request->get_string( 'story', 'post', '' );
+	$row['name_specialist'] = $nv_Request->get_title( 'name_specialist', 'post', '' );
+	$row['description'] = $nv_Request->get_string( 'description', 'post', '' );
+
+	if( empty( $row['name_specialist'] ) )
+	{
+		$error[] = $lang_module['error_required_name_specialist'];
+	}
 
 	if( empty( $error ) )
 	{
@@ -43,20 +42,14 @@ if ( $nv_Request->isset_request( 'submit', 'post' ) )
 		{
 			if( empty( $row['id'] ) )
 			{
-				$stmt = $db->prepare( 'INSERT INTO nv4_vi_kham_benh_doctor (name, datetime, specialist, position, address, phone, business, story) VALUES (:name, :datetime, :specialist, :position, :address, :phone, :business, :story)' );
+				$stmt = $db->prepare( 'INSERT INTO ' . NV_PREFIXLANG . '_' . $module_data . '_specialist (name_specialist, description) VALUES (:name_specialist, :description)' );
 			}
 			else
 			{
-				$stmt = $db->prepare( 'UPDATE nv4_vi_kham_benh_doctor SET name = :name, datetime = :datetime, specialist = :specialist, position = :position, address = :address, phone = :phone, business = :business, story = :story WHERE id=' . $row['id'] );
+				$stmt = $db->prepare( 'UPDATE ' . NV_PREFIXLANG . '_' . $module_data . '_specialist SET name_specialist = :name_specialist, description = :description WHERE id=' . $row['id'] );
 			}
-			$stmt->bindParam( ':name', $row['name'], PDO::PARAM_STR );
-			$stmt->bindParam( ':datetime', $row['datetime'], PDO::PARAM_INT );
-			$stmt->bindParam( ':specialist', $row['specialist'], PDO::PARAM_STR );
-			$stmt->bindParam( ':position', $row['position'], PDO::PARAM_STR );
-			$stmt->bindParam( ':address', $row['address'], PDO::PARAM_STR );
-			$stmt->bindParam( ':phone', $row['phone'], PDO::PARAM_INT );
-			$stmt->bindParam( ':business', $row['business'], PDO::PARAM_STR );
-			$stmt->bindParam( ':story', $row['story'], PDO::PARAM_STR, strlen($row['story']) );
+			$stmt->bindParam( ':name_specialist', $row['name_specialist'], PDO::PARAM_STR );
+			$stmt->bindParam( ':description', $row['description'], PDO::PARAM_STR, strlen($row['description']) );
 
 			$exc = $stmt->execute();
 			if( $exc )
@@ -75,7 +68,7 @@ if ( $nv_Request->isset_request( 'submit', 'post' ) )
 }
 elseif( $row['id'] > 0 )
 {
-	$row = $db->query( 'SELECT * FROM nv4_vi_kham_benh_doctor WHERE id=' . $row['id'] )->fetch();
+	$row = $db->query( 'SELECT * FROM ' . NV_PREFIXLANG . '_' . $module_data . '_specialist WHERE id=' . $row['id'] )->fetch();
 	if( empty( $row ) )
 	{
 		Header( 'Location: ' . NV_BASE_ADMINURL . 'index.php?' . NV_LANG_VARIABLE . '=' . NV_LANG_DATA . '&' . NV_NAME_VARIABLE . '=' . $module_name . '&' . NV_OP_VARIABLE . '=' . $op );
@@ -85,14 +78,8 @@ elseif( $row['id'] > 0 )
 else
 {
 	$row['id'] = 0;
-	$row['name'] = '';
-	$row['datetime'] = 0;
-	$row['specialist'] = '';
-	$row['position'] = '';
-	$row['address'] = '';
-	$row['phone'] = 0;
-	$row['business'] = '';
-	$row['story'] = '';
+	$row['name_specialist'] = '';
+	$row['description'] = '';
 }
 
 $q = $nv_Request->get_title( 'q', 'post,get' );
@@ -106,21 +93,17 @@ if ( ! $nv_Request->isset_request( 'id', 'post,get' ) )
 	$page = $nv_Request->get_int( 'page', 'post,get', 1 );
 	$db->sqlreset()
 		->select( 'COUNT(*)' )
-		->from( 'nv4_vi_kham_benh_doctor' );
+		->from( '' . NV_PREFIXLANG . '_' . $module_data . '_specialist' );
 
 	if( ! empty( $q ) )
 	{
-		$db->where( 'name LIKE :q_name OR position LIKE :q_position OR address LIKE :q_address OR phone LIKE :q_phone OR business LIKE :q_business' );
+		$db->where( 'name_specialist LIKE :q_name_specialist' );
 	}
 	$sth = $db->prepare( $db->sql() );
 
 	if( ! empty( $q ) )
 	{
-		$sth->bindValue( ':q_name', '%' . $q . '%' );
-		$sth->bindValue( ':q_position', '%' . $q . '%' );
-		$sth->bindValue( ':q_address', '%' . $q . '%' );
-		$sth->bindValue( ':q_phone', '%' . $q . '%' );
-		$sth->bindValue( ':q_business', '%' . $q . '%' );
+		$sth->bindValue( ':q_name_specialist', '%' . $q . '%' );
 	}
 	$sth->execute();
 	$num_items = $sth->fetchColumn();
@@ -133,11 +116,7 @@ if ( ! $nv_Request->isset_request( 'id', 'post,get' ) )
 
 	if( ! empty( $q ) )
 	{
-		$sth->bindValue( ':q_name', '%' . $q . '%' );
-		$sth->bindValue( ':q_position', '%' . $q . '%' );
-		$sth->bindValue( ':q_address', '%' . $q . '%' );
-		$sth->bindValue( ':q_phone', '%' . $q . '%' );
-		$sth->bindValue( ':q_business', '%' . $q . '%' );
+		$sth->bindValue( ':q_name_specialist', '%' . $q . '%' );
 	}
 	$sth->execute();
 }
@@ -193,7 +172,7 @@ if( ! empty( $error ) )
 $xtpl->parse( 'main' );
 $contents = $xtpl->text( 'main' );
 
-$page_title = $lang_module['doctor'];
+$page_title = $lang_module['specialist'];
 
 include NV_ROOTDIR . '/includes/header.php';
 echo nv_admin_theme( $contents );

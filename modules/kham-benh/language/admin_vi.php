@@ -116,3 +116,8 @@ $lang_module['specialist'] = 'Chuyên khoa';
 $lang_module['position'] = 'Chức vụ';
 $lang_module['business'] = 'Nơi công tác';
 $lang_module['story'] = 'Tiểu sử';
+
+//Lang for function specialist
+$lang_module['name_specialist'] = 'Chuyên khoa';
+$lang_module['description'] = 'Giới thiệu';
+$lang_module['error_required_name_specialist'] = 'Lỗi: bạn cần nhập dữ liệu cho Chuyên khoa';

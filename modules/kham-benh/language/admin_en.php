@@ -89,3 +89,8 @@ $lang_module['specialist'] = 'Specialist';
 $lang_module['position'] = 'Position';
 $lang_module['business'] = 'Business';
 $lang_module['story'] = 'Story';
+
+//Lang for function specialist
+$lang_module['name_specialist'] = 'Name specialist';
+$lang_module['description'] = 'Description';
+$lang_module['error_required_name_specialist'] = 'Error: Required fields enter the Name specialist';
