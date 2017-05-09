@@ -40,3 +40,14 @@ $lang_module['specialist_id'] = 'Chuyên khoa';
 $lang_module['error_required_name'] = 'Lỗi: bạn cần nhập dữ liệu cho Họ&tên bác sĩ';
 $lang_module['error_required_specialist_id'] = 'Lỗi: bạn cần nhập dữ liệu cho Chuyên khoa';
 $lang_module['error_required_position'] = 'Lỗi: bạn cần nhập dữ liệu cho Chức vụ';
+
+//Lang for function doctor
+$lang_module['add'] = 'Thêm mới';
+$lang_module['edit'] = 'Sửa';
+$lang_module['delete'] = 'Xóa';
+$lang_module['number'] = 'STT';
+$lang_module['active'] = 'Trạng thái';
+$lang_module['search_title'] = 'Nhập từ khóa tìm kiếm';
+$lang_module['search_submit'] = 'Tìm kiếm';
+$lang_module['address'] = 'Địa chỉ';
+$lang_module['phone'] = 'Số điện thoại';

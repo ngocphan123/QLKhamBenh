@@ -13,7 +13,7 @@
 		</div>
 		<div class="col-xs-12 col-md-3">
 			<div class="form-group">
-				<input class="btn btn-primary" type="submit" value="{LANG.search}" />
+				<input class="btn btn-primary" type="submit" value="{LANG.search_submit}" />
 			</div>
 		</div>
 	</div>
@@ -27,9 +27,7 @@
 					<th class="w100">{LANG.number}</th>
 					<th>{LANG.name}</th>
 					<th>{LANG.datetime}</th>
-					<th>{LANG.specialist_id}</th>
 					<th>{LANG.position}</th>
-					<th>{LANG.address}</th>
 					<th>{LANG.phone}</th>
 					<th>{LANG.business}</th>
 					<th class="w150">&nbsp;</th>
@@ -38,7 +36,7 @@
 			<!-- BEGIN: generate_page -->
 			<tfoot>
 				<tr>
-					<td class="text-center" colspan="9">{NV_GENERATE_PAGE}</td>
+					<td class="text-center" colspan="7">{NV_GENERATE_PAGE}</td>
 				</tr>
 			</tfoot>
 			<!-- END: generate_page -->
@@ -48,9 +46,7 @@
 					<td> {VIEW.number} </td>
 					<td> {VIEW.name} </td>
 					<td> {VIEW.datetime} </td>
-					<td> {VIEW.specialist_id} </td>
 					<td> {VIEW.position} </td>
-					<td> {VIEW.address} </td>
 					<td> {VIEW.phone} </td>
 					<td> {VIEW.business} </td>
 					<td class="text-center"><i class="fa fa-edit fa-lg">&nbsp;</i> <a href="{VIEW.link_edit}#edit">{LANG.edit}</a> - <em class="fa fa-trash-o fa-lg">&nbsp;</em> <a href="{VIEW.link_delete}" onclick="return confirm(nv_is_del_confirm[0]);">{LANG.delete}</a></td>
@@ -78,11 +74,11 @@
 	<div class="form-group">
 		<label class="col-sm-5 col-md-4 control-label"><strong>{LANG.datetime}</strong></label>
 		<div class="col-sm-19 col-md-20">
-			<input class="form-control" type="text" name="datetime" value="{ROW.datetime}" pattern="^[0-9]*$"  oninvalid="setCustomValidity( nv_digits )" oninput="setCustomValidity('')" />
+			<input class="form-control" type="text" name="datetime" value="{ROW.datetime}" />
 		</div>
 	</div>
 	<div class="form-group">
-		<label class="col-sm-5 col-md-4 control-label"><strong>{LANG.specialist_id}</strong> <span class="red">(*)</span></label>
+		<label class="col-sm-5 col-md-4 control-label"><strong>{LANG.specialist_id}</strong></label>
 		<div class="col-sm-19 col-md-20">
 			<select class="form-control" name="specialist_id">
 				<option value=""> --- </option>

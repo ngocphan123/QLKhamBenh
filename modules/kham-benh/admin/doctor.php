@@ -5,7 +5,7 @@
  * @Author VINADES.,JSC (contact@vinades.vn)
  * @Copyright (C) 2017 VINADES.,JSC. All rights reserved
  * @License GNU/GPL version 2 or any later version
- * @Createdate Tue, 09 May 2017 08:32:25 GMT
+ * @Createdate Tue, 09 May 2017 10:41:21 GMT
  */
 
 if ( ! defined( 'NV_IS_FILE_ADMIN' ) ) die( 'Stop!!!' );
@@ -40,10 +40,6 @@ if ( $nv_Request->isset_request( 'submit', 'post' ) )
 	if( empty( $row['name'] ) )
 	{
 		$error[] = $lang_module['error_required_name'];
-	}
-	elseif( empty( $row['specialist_id'] ) )
-	{
-		$error[] = $lang_module['error_required_specialist_id'];
 	}
 	elseif( empty( $row['position'] ) )
 	{
@@ -131,7 +127,7 @@ if ( ! $nv_Request->isset_request( 'id', 'post,get' ) )
 
 	if( ! empty( $q ) )
 	{
-		$db->where( 'name LIKE :q_name OR datetime LIKE :q_datetime OR specialist_id LIKE :q_specialist_id OR position LIKE :q_position OR address LIKE :q_address OR phone LIKE :q_phone OR business LIKE :q_business' );
+		$db->where( 'name LIKE :q_name OR datetime LIKE :q_datetime OR position LIKE :q_position OR phone LIKE :q_phone OR business LIKE :q_business' );
 	}
 	$sth = $db->prepare( $db->sql() );
 
@@ -139,9 +135,7 @@ if ( ! $nv_Request->isset_request( 'id', 'post,get' ) )
 	{
 		$sth->bindValue( ':q_name', '%' . $q . '%' );
 		$sth->bindValue( ':q_datetime', '%' . $q . '%' );
-		$sth->bindValue( ':q_specialist_id', '%' . $q . '%' );
 		$sth->bindValue( ':q_position', '%' . $q . '%' );
-		$sth->bindValue( ':q_address', '%' . $q . '%' );
 		$sth->bindValue( ':q_phone', '%' . $q . '%' );
 		$sth->bindValue( ':q_business', '%' . $q . '%' );
 	}
@@ -158,9 +152,7 @@ if ( ! $nv_Request->isset_request( 'id', 'post,get' ) )
 	{
 		$sth->bindValue( ':q_name', '%' . $q . '%' );
 		$sth->bindValue( ':q_datetime', '%' . $q . '%' );
-		$sth->bindValue( ':q_specialist_id', '%' . $q . '%' );
 		$sth->bindValue( ':q_position', '%' . $q . '%' );
-		$sth->bindValue( ':q_address', '%' . $q . '%' );
 		$sth->bindValue( ':q_phone', '%' . $q . '%' );
 		$sth->bindValue( ':q_business', '%' . $q . '%' );
 	}

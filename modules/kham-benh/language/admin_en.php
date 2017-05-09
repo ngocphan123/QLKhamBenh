@@ -39,3 +39,13 @@ $lang_module['specialist_id'] = 'Specialist id';
 $lang_module['error_required_name'] = 'Error: Required fields enter the Name';
 $lang_module['error_required_specialist_id'] = 'Error: Required fields enter the Specialist id';
 $lang_module['error_required_position'] = 'Error: Required fields enter the Position';
+
+//Lang for function doctor
+$lang_module['edit'] = 'edit';
+$lang_module['delete'] = 'Delete';
+$lang_module['number'] = 'Number';
+$lang_module['active'] = 'Trạng thái';
+$lang_module['search_title'] = 'Enter keywords searching';
+$lang_module['search_submit'] = 'Search';
+$lang_module['address'] = 'Address';
+$lang_module['phone'] = 'Phone';
