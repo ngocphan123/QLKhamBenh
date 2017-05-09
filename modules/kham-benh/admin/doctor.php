@@ -33,7 +33,7 @@ if ( $nv_Request->isset_request( 'submit', 'post' ) )
 	$row['specialist_id'] = $nv_Request->get_int( 'specialist_id', 'post', 0 );
 	$row['position'] = $nv_Request->get_title( 'position', 'post', '' );
 	$row['address'] = $nv_Request->get_title( 'address', 'post', '' );
-	$row['phone'] = $nv_Request->get_int( 'phone', 'post', 0 );
+	$row['phone'] = $nv_Request->get_string( 'phone', 'post', 0 );
 	$row['business'] = $nv_Request->get_title( 'business', 'post', '' );
 	$row['story'] = $nv_Request->get_string( 'story', 'post', '' );
 	if( ! empty( $row['datetime'] ) and preg_match( '/^([0-9]{1,2})\/([0-9]{1,2})\/([0-9]{4})$/', $row['datetime'], $m ) )
