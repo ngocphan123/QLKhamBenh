@@ -1,4 +1,8 @@
 <!-- BEGIN: main -->
+<link rel="stylesheet" type="text/css" href="{NV_BASE_SITEURL}{NV_ASSETS_DIR}/js/jquery-ui/jquery-ui.min.css">
+<script type="text/javascript" src="{NV_BASE_SITEURL}{NV_ASSETS_DIR}/js/jquery-ui/jquery-ui.min.js"></script>
+<script type="text/javascript" src="{NV_BASE_SITEURL}{NV_ASSETS_DIR}/js/language/jquery.ui.datepicker-{NV_LANG_INTERFACE}.js"></script>
+
 <!-- BEGIN: view -->
 <div class="well">
 <form action="{NV_BASE_ADMINURL}index.php" method="get">
@@ -74,7 +78,7 @@
 	<div class="form-group">
 		<label class="col-sm-5 col-md-4 control-label"><strong>{LANG.datetime}</strong></label>
 		<div class="col-sm-19 col-md-20">
-			<input class="form-control" type="text" name="datetime" value="{ROW.datetime}" />
+			<input class="form-control datepicker" type="text" name="datetime" id="datetime" value="{ROW.datetime}" />
 		</div>
 	</div>
 	<div class="form-group">
@@ -121,4 +125,21 @@
 	<div class="form-group" style="text-align: center"><input class="btn btn-primary" name="submit" type="submit" value="{LANG.save}" /></div>
 </form>
 </div></div>
+<script type="text/javascript" data-show="after">
+	$(function() {
+		$("#datetime").datepicker({
+			dateFormat : "dd/mm/yy",
+			changeMonth : true,
+			changeYear : true,
+			showOtherMonths : true,
+			yearRange: '1910:2050',
+			showOn : 'focus'
+		});
+		$('#datetime').click(function() {
+			$("#datetime").datepicker('show');
+		});
+
+	});
+
+</script>
 <!-- END: main -->

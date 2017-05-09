@@ -29,14 +29,17 @@ $row['id'] = $nv_Request->get_int( 'id', 'post,get', 0 );
 if ( $nv_Request->isset_request( 'submit', 'post' ) )
 {
 	$row['name'] = $nv_Request->get_title( 'name', 'post', '' );
-	$row['datetime'] = $nv_Request->get_int( 'datetime', 'post', 0 );
+	$row['datetime'] = $nv_Request->get_string( 'datetime', 'post', 0 );
 	$row['specialist_id'] = $nv_Request->get_int( 'specialist_id', 'post', 0 );
 	$row['position'] = $nv_Request->get_title( 'position', 'post', '' );
 	$row['address'] = $nv_Request->get_title( 'address', 'post', '' );
 	$row['phone'] = $nv_Request->get_int( 'phone', 'post', 0 );
 	$row['business'] = $nv_Request->get_title( 'business', 'post', '' );
 	$row['story'] = $nv_Request->get_string( 'story', 'post', '' );
-
+	if( ! empty( $row['datetime'] ) and preg_match( '/^([0-9]{1,2})\/([0-9]{1,2})\/([0-9]{4})$/', $row['datetime'], $m ) )
+		{
+			$row['datetime'] = mktime( 0, 0, 0, $m[2], $m[1], $m[3] );
+		}
 	if( empty( $row['name'] ) )
 	{
 		$error[] = $lang_module['error_required_name'];
