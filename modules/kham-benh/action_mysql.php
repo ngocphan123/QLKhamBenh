@@ -15,18 +15,26 @@ $sql_drop_module[] = "DROP TABLE IF EXISTS " . $db_config['prefix'] . "_" . $lan
 $sql_drop_module[] = "DROP TABLE IF EXISTS " . $db_config['prefix'] . "_" . $lang . "_" . $module_data . "_drug";
 $sql_drop_module[] = "DROP TABLE IF EXISTS " . $db_config['prefix'] . "_" . $lang . "_" . $module_data . "_history";
 $sql_drop_module[] = "DROP TABLE IF EXISTS " . $db_config['prefix'] . "_" . $lang . "_" . $module_data . "_patient";
+$sql_drop_module[] = "DROP TABLE IF EXISTS " . $db_config['prefix'] . "_" . $lang . "_" . $module_data . "_specialist";
 
 $sql_create_module = $sql_drop_module;
 $sql_create_module[] = "CREATE TABLE " . $db_config['prefix'] . "_" . $lang . "_" . $module_data . "_doctor(
   id int(11) unsigned NOT NULL AUTO_INCREMENT,
   name varchar(250) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'Họ&tên bác sĩ',
   datetime int(11) unsigned NOT NULL COMMENT 'Ngày tháng năm sinh',
-  specialist varchar(250) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'Chuyên khoa',
+  specialist_id int(11) unsigned NOT NULL COMMENT 'Chuyên khoa',
   position varchar(250) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'Chức vụ',
   address varchar(250) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'Địa chỉ',
-  phone int(11) unsigned NOT NULL COMMENT 'Số điện thoại',
+  phone varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci COMMENT 'Số điện thoại',
   business varchar(250) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'Nơi công tác',
   story text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'Tiểu sử',
+  PRIMARY KEY (id)
+) ENGINE=MyISAM";
+
+$sql_create_module[] = "CREATE TABLE " . $db_config['prefix'] . "_" . $lang . "_" . $module_data . "_specialist(
+  id int(11) unsigned NOT NULL AUTO_INCREMENT,
+  name_specialist varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci COMMENT 'Chuyên khoa',
+  description text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'Giới thiệu',
   PRIMARY KEY (id)
 ) ENGINE=MyISAM";
 

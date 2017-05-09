@@ -1,4 +1,8 @@
 <!-- BEGIN: main -->
+<link rel="stylesheet" type="text/css" href="{NV_BASE_SITEURL}{NV_ASSETS_DIR}/js/jquery-ui/jquery-ui.min.css">
+<script type="text/javascript" src="{NV_BASE_SITEURL}{NV_ASSETS_DIR}/js/jquery-ui/jquery-ui.min.js"></script>
+<script type="text/javascript" src="{NV_BASE_SITEURL}{NV_ASSETS_DIR}/js/language/jquery.ui.datepicker-{NV_LANG_INTERFACE}.js"></script>
+
 <!-- BEGIN: view -->
 <div class="well">
 <form action="{NV_BASE_ADMINURL}index.php" method="get">
@@ -26,6 +30,8 @@
 				<tr>
 					<th class="w100">{LANG.number}</th>
 					<th>{LANG.name}</th>
+					<th>{LANG.datetime}</th>
+					<th>{LANG.specialist_id}</th>
 					<th>{LANG.position}</th>
 					<th>{LANG.address}</th>
 					<th>{LANG.phone}</th>
@@ -36,7 +42,7 @@
 			<!-- BEGIN: generate_page -->
 			<tfoot>
 				<tr>
-					<td class="text-center" colspan="7">{NV_GENERATE_PAGE}</td>
+					<td class="text-center" colspan="9">{NV_GENERATE_PAGE}</td>
 				</tr>
 			</tfoot>
 			<!-- END: generate_page -->
@@ -45,6 +51,8 @@
 				<tr>
 					<td> {VIEW.number} </td>
 					<td> {VIEW.name} </td>
+					<td> {VIEW.datetime} </td>
+					<td> {VIEW.specialist_id} </td>
 					<td> {VIEW.position} </td>
 					<td> {VIEW.address} </td>
 					<td> {VIEW.phone} </td>
@@ -66,21 +74,26 @@
 <form class="form-horizontal" action="{NV_BASE_ADMINURL}index.php?{NV_LANG_VARIABLE}={NV_LANG_DATA}&amp;{NV_NAME_VARIABLE}={MODULE_NAME}&amp;{NV_OP_VARIABLE}={OP}" method="post">
 	<input type="hidden" name="id" value="{ROW.id}" />
 	<div class="form-group">
-		<label class="col-sm-5 col-md-4 control-label"><strong>{LANG.name}</strong></label>
+		<label class="col-sm-5 col-md-4 control-label"><strong>{LANG.name}</strong> <span class="red">(*)</span></label>
 		<div class="col-sm-19 col-md-20">
-			<input class="form-control" type="text" name="name" value="{ROW.name}" />
+			<input class="form-control" type="text" name="name" value="{ROW.name}" required="required" oninvalid="setCustomValidity( nv_required )" oninput="setCustomValidity('')" />
 		</div>
 	</div>
 	<div class="form-group">
 		<label class="col-sm-5 col-md-4 control-label"><strong>{LANG.datetime}</strong></label>
 		<div class="col-sm-19 col-md-20">
-			<input class="form-control" type="text" name="datetime" value="{ROW.datetime}" pattern="^[0-9]*$"  oninvalid="setCustomValidity( nv_digits )" oninput="setCustomValidity('')" />
+			<input class="form-control" type="text" name="datetime" id="datetime" value="{ROW.datetime}" />
 		</div>
 	</div>
 	<div class="form-group">
-		<label class="col-sm-5 col-md-4 control-label"><strong>{LANG.specialist}</strong></label>
+		<label class="col-sm-5 col-md-4 control-label"><strong>{LANG.specialist_id}</strong></label>
 		<div class="col-sm-19 col-md-20">
-			<input class="form-control" type="text" name="specialist" value="{ROW.specialist}" />
+			<select class="form-control" name="specialist_id">
+				<option value=""> --- </option>
+				<!-- BEGIN: select_specialist_id -->
+				<option value="{OPTION.key}" {OPTION.selected}>{OPTION.title}</option>
+				<!-- END: select_specialist_id -->
+			</select>
 		</div>
 	</div>
 	<div class="form-group">
@@ -96,9 +109,9 @@
 		</div>
 	</div>
 	<div class="form-group">
-		<label class="col-sm-5 col-md-4 control-label"><strong>{LANG.phone}</strong></label>
+		<label class="col-sm-5 col-md-4 control-label"><strong>{LANG.phone}</strong> <span class="red">(*)</span></label>
 		<div class="col-sm-19 col-md-20">
-			<input class="form-control" type="text" name="phone" value="{ROW.phone}" pattern="^[0-9]*$"  oninvalid="setCustomValidity( nv_digits )" oninput="setCustomValidity('')" />
+			<input class="form-control" type="text" name="phone" value="{ROW.phone}" required="required" oninvalid="setCustomValidity( nv_required )" oninput="setCustomValidity('')" />
 		</div>
 	</div>
 	<div class="form-group">
@@ -116,4 +129,22 @@
 	<div class="form-group" style="text-align: center"><input class="btn btn-primary" name="submit" type="submit" value="{LANG.save}" /></div>
 </form>
 </div></div>
+
+<script type="text/javascript" data-show="after">
+	$(function() {
+		$("#datetime").datepicker({
+			dateFormat : "dd/mm/yy",
+			changeMonth : true,
+			changeYear : true,
+			showOtherMonths : true,
+			yearRange: '1910:2050',
+			showOn : 'focus'
+		});
+		$('#datetime').click(function() {
+			$("#datetime").datepicker('show');
+		});
+
+	});
+
+</script>
 <!-- END: main -->
