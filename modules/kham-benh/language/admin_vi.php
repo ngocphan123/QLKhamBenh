@@ -30,7 +30,6 @@ $lang_module['position'] = 'Chức vụ';
 $lang_module['business'] = 'Nơi công tác';
 $lang_module['story'] = 'Tiểu sử';
 
-<<<<<<< HEAD
 //Lang for function patient
 $lang_module['patient'] = 'Quản lý bệnh nhân';
 $lang_module['code_patient'] = 'Mã bệnh nhân';
@@ -45,7 +44,7 @@ $lang_module['status_patient_2'] = 'Đã khám';
 $lang_module['error_patient_empty'] = 'Lỗi: không được để trống';
 $lang_module['error_patient_email'] = 'Lỗi: Email không đúng chuẩn. Ví dụ vidu@gmail.com';
 $lang_module['error_patient_year'] = 'Lỗi: Tuổi phải lớn hơn 0';
-=======
+
 //Lang for function specialist
 $lang_module['name_specialist'] = 'Chuyên khoa';
 $lang_module['description'] = 'Giới thiệu';
@@ -70,4 +69,3 @@ $lang_module['phone'] = 'Số điện thoại';
 
 //Lang for function doctor
 $lang_module['error_required_phone'] = 'Lỗi: bạn cần nhập dữ liệu cho Số điện thoại';
->>>>>>> branch 'master' of git@github.com:ngocphan123/QLKhamBenh.git
