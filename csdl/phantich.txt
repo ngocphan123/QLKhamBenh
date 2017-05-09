@@ -21,4 +21,6 @@ Cho phép bệnh nhân đăng ký online gồm các trường
 +Thông tin bệnh nhân
 +Chuyên khoa
 +Thời gian khám
-
+sql:
+ALTER TABLE `nv4_vi_kham_benh_patient` ADD UNIQUE(`email`);
+ALTER TABLE `nv4_vi_kham_benh_patient` ADD UNIQUE(`email`);
