@@ -19,3 +19,41 @@ $lang_translator['langtype'] = 'lang_module';
 $lang_module['main'] = 'Trang chính';
 $lang_module['detail'] = 'Xem chi tiết';
 $lang_module['search'] = 'Tìm kiếm';
+
+//Lang for function patient
+$lang_module['patient'] = 'patient';
+$lang_module['add'] = 'Thêm mới';
+$lang_module['edit'] = 'Sửa';
+$lang_module['delete'] = 'Xóa';
+$lang_module['number'] = 'STT';
+$lang_module['active'] = 'Trạng thái';
+$lang_module['code_patient'] = 'Mã bệnh nhân';
+$lang_module['name'] = 'Họ & tên';
+$lang_module['year'] = 'Tuổi';
+$lang_module['email'] = 'Email';
+$lang_module['phone'] = 'Số điện thoại';
+$lang_module['sex'] = 'Giới tính';
+$lang_module['address'] = 'Địa chỉ';
+$lang_module['status'] = 'Trạng thái khám bệnh';
+$lang_module['error_required_name'] = 'Lỗi: bạn cần nhập dữ liệu cho Họ & tên';
+$lang_module['error_required_email'] = 'Lỗi: bạn cần nhập dữ liệu cho Email';
+$lang_module['error_required_phone'] = 'Lỗi: bạn cần nhập dữ liệu cho Số điện thoại';
+$lang_module['error_required_sex'] = 'Lỗi: bạn cần nhập dữ liệu cho Giới tính';
+$lang_module['save'] = 'Lưu thay đổi';
+
+//Lang for function main
+$lang_module['name_specialist'] = 'Chuyên khoa';
+$lang_module['description'] = 'Giới thiệu';
+$lang_module['error_required_name_specialist'] = 'Lỗi: bạn cần nhập dữ liệu cho Chuyên khoa';
+$lang_module['error_required_description'] = 'Lỗi: bạn cần nhập dữ liệu cho Giới thiệu';
+
+//Lang for function order
+$lang_module['order'] = 'order';
+$lang_module['id_patient'] = 'Mã bệnh nhân';
+$lang_module['id_doctor'] = 'Bác sĩ';
+$lang_module['date_medical'] = 'ngày khám';
+$lang_module['id_specialist'] = 'Chuyên khoa';
+$lang_module['error_required_id_patient'] = 'Lỗi: bạn cần nhập dữ liệu cho Mã bệnh nhân';
+$lang_module['error_required_id_doctor'] = 'Lỗi: bạn cần nhập dữ liệu cho Bác sĩ';
+$lang_module['error_required_date_medical'] = 'Lỗi: bạn cần nhập dữ liệu cho ngày khám';
+$lang_module['error_required_id_specialist'] = 'Lỗi: bạn cần nhập dữ liệu cho Chuyên khoa';

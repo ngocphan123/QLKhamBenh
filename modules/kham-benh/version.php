@@ -12,8 +12,8 @@ if ( ! defined( 'NV_MAINFILE' ) ) die( 'Stop!!!' );
 
 $module_version = array(
 	'name' => 'Kham-benh',
-	'modfuncs' => 'main',
-	'change_alias' => 'main',
+	'modfuncs' => 'main,patient,order',
+	'change_alias' => 'main,patient,order',
 	'submenu' => 'main',
 	'is_sysmod' => 0,
 	'virtual' => 1,

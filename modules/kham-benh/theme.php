@@ -8,8 +8,7 @@
  * @Createdate Fri, 03 Feb 2017 08:08:32 GMT
  */
 
-if ( ! defined( 'NV_IS_MOD_SIM_SO_DEP' ) ) die( 'Stop!!!' );
-
+if ( ! defined( 'NV_IS_MOD_KHAM-BENH' ) ) die( 'Stop!!!' );
 /**
  * nv_theme_sim_so_dep_main()
  *
