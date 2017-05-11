@@ -62,3 +62,10 @@ $lang_module['error_required_phone'] = 'Error: Required fields enter the Phone';
 //Lang for function main
 $lang_module['email'] = 'Email';
 $lang_module['status'] = 'Status';
+
+//Lang for function order
+$lang_module['order'] = 'order';
+$lang_module['id_patient'] = 'Id patient';
+$lang_module['id_doctor'] = 'Id doctor';
+$lang_module['date_medical'] = 'Date medical';
+$lang_module['id_specialist'] = 'Id specialist';

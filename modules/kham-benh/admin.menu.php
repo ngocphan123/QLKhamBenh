@@ -13,3 +13,4 @@ if ( ! defined( 'NV_ADMIN' ) ) die( 'Stop!!!' );
 $submenu['doctor'] = $lang_module['doctor'];
 $submenu['patient'] = $lang_module['patient'];
 $submenu['specialist'] = $lang_module['specialist'];
+$submenu['order'] = $lang_module['order'];
