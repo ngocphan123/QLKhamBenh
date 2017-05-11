@@ -70,3 +70,7 @@ $lang_module['phone'] = 'Số điện thoại';
 
 //Lang for function doctor
 $lang_module['error_required_phone'] = 'Lỗi: bạn cần nhập dữ liệu cho Số điện thoại';
+
+//Lang for function main
+$lang_module['email'] = 'Email';
+$lang_module['status'] = 'Trạng thái khám bệnh';

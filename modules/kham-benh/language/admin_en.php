@@ -58,3 +58,7 @@ $lang_module['phone'] = 'Phone';
 
 //Lang for function doctor
 $lang_module['error_required_phone'] = 'Error: Required fields enter the Phone';
+
+//Lang for function main
+$lang_module['email'] = 'Email';
+$lang_module['status'] = 'Status';
