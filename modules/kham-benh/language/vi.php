@@ -51,9 +51,21 @@ $lang_module['error_required_description'] = 'Lỗi: bạn cần nhập dữ li�
 $lang_module['order'] = 'order';
 $lang_module['id_patient'] = 'Mã bệnh nhân';
 $lang_module['id_doctor'] = 'Bác sĩ';
-$lang_module['date_medical'] = 'ngày khám';
+$lang_module['date_medical'] = 'Ngày khám';
 $lang_module['id_specialist'] = 'Chuyên khoa';
 $lang_module['error_required_id_patient'] = 'Lỗi: bạn cần nhập dữ liệu cho Mã bệnh nhân';
 $lang_module['error_required_id_doctor'] = 'Lỗi: bạn cần nhập dữ liệu cho Bác sĩ';
 $lang_module['error_required_date_medical'] = 'Lỗi: bạn cần nhập dữ liệu cho ngày khám';
 $lang_module['error_required_id_specialist'] = 'Lỗi: bạn cần nhập dữ liệu cho Chuyên khoa';
+
+//Lang for function specialist
+$lang_module['specialist'] = 'specialist';
+$lang_module['search_title'] = 'Nhập từ khóa tìm kiếm';
+$lang_module['search_submit'] = 'Tìm kiếm';
+
+$lang_module['sex_male'] = 'Nam';
+$lang_module['sex_female'] = 'Nữ';
+$lang_module['name_patient'] = 'Họ & tên';
+$lang_module['status_patient'] = 'Trạng thái';
+$lang_module['status_patient_1'] = 'Chưa khám';
+$lang_module['status_patient_2'] = 'Đã khám';

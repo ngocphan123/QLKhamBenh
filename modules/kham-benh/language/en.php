@@ -56,3 +56,8 @@ $lang_module['error_required_id_patient'] = 'Error: Required fields enter the Id
 $lang_module['error_required_id_doctor'] = 'Error: Required fields enter the Id doctor';
 $lang_module['error_required_date_medical'] = 'Error: Required fields enter the Date medical';
 $lang_module['error_required_id_specialist'] = 'Error: Required fields enter the Id specialist';
+
+//Lang for function specialist
+$lang_module['specialist'] = 'specialist';
+$lang_module['search_title'] = 'Enter keywords searching';
+$lang_module['search_submit'] = 'Search';
