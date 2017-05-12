@@ -83,5 +83,7 @@ $sql_create_module[] = "CREATE TABLE " . $db_config['prefix'] . "_" . $lang . "_
   id_doctor int(11)  NOT NULL COMMENT 'Bác sĩ',
   date_medical int(11)  NOT NULL COMMENT 'ngày khám',
   id_specialist int(11)  NOT NULL COMMENT 'Chuyên khoa',
+  type TINYINT(1) UNSIGNED NOT NULL DEFAULT '0' COMMENT 'Loại khám bệnh',
+  status TINYINT(1) UNSIGNED NOT NULL DEFAULT '0' COMMENT 'Trạng thái duyệt',
   PRIMARY KEY (id)
 ) ENGINE=MyISAM";
