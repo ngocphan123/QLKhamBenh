@@ -57,7 +57,7 @@ $sql_create_module[] = "CREATE TABLE " . $db_config['prefix'] . "_" . $lang . "_
   name varchar(250) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'Họ & tên',
   year smallint(4) unsigned NOT NULL COMMENT 'Tuổi',
   email varchar(250) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'Email',
-  phone int(11) unsigned NOT NULL COMMENT 'Số điện thoại',
+  phone VARCHAR(250) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL  COMMENT 'Số điện thoại',
   sex tinyint(1) unsigned NOT NULL COMMENT 'Giới tính',
   address varchar(250) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'Địa chỉ',
   status tinyint(1) unsigned NOT NULL COMMENT 'Trạng thái khám bệnh',
