@@ -39,6 +39,8 @@ $lang_module['error_required_name'] = 'Lỗi: bạn cần nhập dữ liệu cho
 $lang_module['error_required_email'] = 'Lỗi: bạn cần nhập dữ liệu cho Email';
 $lang_module['error_required_phone'] = 'Lỗi: bạn cần nhập dữ liệu cho Số điện thoại';
 $lang_module['error_required_sex'] = 'Lỗi: bạn cần nhập dữ liệu cho Giới tính';
+$lang_module['error_required_patient'] = 'Lỗi: bạn cần nhập dữ liệu cho mã bệnh nhân';
+$lang_module['notification'] = 'Bạn đặt lịch thành công sau khi hệ thống xác nhận sẽ gửi email  lại cho bệnh nhân hoặc liên hệ bằng số điện thoại cho bệnh nhân. Mã số bệnh nhân của bạn là: %s. Bạn cần lưu mã số bệnh nhân này tiện cho lần khám tiếp theo';
 $lang_module['save'] = 'Lưu thay đổi';
 
 //Lang for function main
@@ -69,3 +71,12 @@ $lang_module['name_patient'] = 'Họ & tên';
 $lang_module['status_patient'] = 'Trạng thái';
 $lang_module['status_patient_1'] = 'Chưa khám';
 $lang_module['status_patient_2'] = 'Đã khám';
+
+//Lang for function order
+$lang_module['type'] = 'Kiểu khám';
+$lang_module['type_0'] = 'Khám lần 1';
+$lang_module['type_1'] = 'Tái khám';
+
+//Lang for function order
+$lang_module['error_required_type'] = 'Lỗi: bạn cần nhập dữ liệu cho Kiểu khám';
+$lang_module['error_required_status'] = 'Lỗi: bạn cần nhập dữ liệu cho Trạng thái khám bệnh';

@@ -61,3 +61,10 @@ $lang_module['error_required_id_specialist'] = 'Error: Required fields enter the
 $lang_module['specialist'] = 'specialist';
 $lang_module['search_title'] = 'Enter keywords searching';
 $lang_module['search_submit'] = 'Search';
+
+//Lang for function order
+$lang_module['type'] = 'Type';
+
+//Lang for function order
+$lang_module['error_required_type'] = 'Error: Required fields enter the Type';
+$lang_module['error_required_status'] = 'Error: Required fields enter the Status';

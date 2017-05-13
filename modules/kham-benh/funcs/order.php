@@ -5,7 +5,7 @@
  * @Author VINADES.,JSC (contact@vinades.vn)
  * @Copyright (C) 2017 VINADES.,JSC. All rights reserved
  * @License GNU/GPL version 2 or any later version
- * @Createdate Thu, 11 May 2017 16:55:15 GMT
+ * @Createdate Fri, 12 May 2017 09:59:17 GMT
  */
 
 if( ! defined( 'NV_IS_MOD_KHAM-BENH' ) ) die( 'Stop!!!' );
@@ -15,6 +15,7 @@ $error = array();
 $row['id'] = $nv_Request->get_int( 'id', 'post,get', 0 );
 if ( $nv_Request->isset_request( 'submit', 'post' ) )
 {
+	$row['id_patient'] = $nv_Request->get_int( 'id_patient', 'post', 0 );
 	if( preg_match( '/^([0-9]{1,2})\/([0-9]{1,2})\/([0-9]{4})$/', $nv_Request->get_string( 'date_medical', 'post' ), $m ) )
 	{
 		$_hour = 0;
@@ -26,6 +27,17 @@ if ( $nv_Request->isset_request( 'submit', 'post' ) )
 		$row['date_medical'] = 0;
 	}
 	$row['id_specialist'] = $nv_Request->get_int( 'id_specialist', 'post', 0 );
+	$row['type'] = $nv_Request->get_int( 'type', 'post', 0 );
+	$row['status'] = $nv_Request->get_int( 'status', 'post', 0 );
+
+	if( empty( $row['type'] ) )
+	{
+		$error[] = $lang_module['error_required_type'];
+	}
+	elseif( empty( $row['status'] ) )
+	{
+		$error[] = $lang_module['error_required_status'];
+	}
 
 	if( empty( $error ) )
 	{
@@ -34,21 +46,22 @@ if ( $nv_Request->isset_request( 'submit', 'post' ) )
 			if( empty( $row['id'] ) )
 			{
 
-				$row['id_patient'] = 0;
 				$row['id_doctor'] = 0;
 
-				$stmt = $db->prepare( 'INSERT INTO ' . NV_PREFIXLANG . '_' . $module_data . '_order (id_patient, id_doctor, date_medical, id_specialist) VALUES (:id_patient, :id_doctor, :date_medical, :id_specialist)' );
+				$stmt = $db->prepare( 'INSERT INTO ' . NV_PREFIXLANG . '_' . $module_data . '_order (id_patient, id_doctor, date_medical, id_specialist, type, status) VALUES (:id_patient, :id_doctor, :date_medical, :id_specialist, :type, :status)' );
 
-				$stmt->bindParam( ':id_patient', $row['id_patient'], PDO::PARAM_INT );
 				$stmt->bindParam( ':id_doctor', $row['id_doctor'], PDO::PARAM_INT );
 
 			}
 			else
 			{
-				$stmt = $db->prepare( 'UPDATE ' . NV_PREFIXLANG . '_' . $module_data . '_order SET date_medical = :date_medical, id_specialist = :id_specialist WHERE id=' . $row['id'] );
+				$stmt = $db->prepare( 'UPDATE ' . NV_PREFIXLANG . '_' . $module_data . '_order SET id_patient = :id_patient, date_medical = :date_medical, id_specialist = :id_specialist, type = :type, status = :status WHERE id=' . $row['id'] );
 			}
+			$stmt->bindParam( ':id_patient', $row['id_patient'], PDO::PARAM_INT );
 			$stmt->bindParam( ':date_medical', $row['date_medical'], PDO::PARAM_INT );
 			$stmt->bindParam( ':id_specialist', $row['id_specialist'], PDO::PARAM_INT );
+			$stmt->bindParam( ':type', $row['type'], PDO::PARAM_INT );
+			$stmt->bindParam( ':status', $row['status'], PDO::PARAM_INT );
 
 			$exc = $stmt->execute();
 			if( $exc )
@@ -77,8 +90,11 @@ elseif( $row['id'] > 0 )
 else
 {
 	$row['id'] = 0;
+	$row['id_patient'] = 0;
 	$row['date_medical'] = 0;
 	$row['id_specialist'] = 0;
+	$row['type'] = 0;
+	$row['status'] = 0;
 }
 
 if( empty( $row['date_medical'] ) )
@@ -89,14 +105,8 @@ else
 {
 	$row['date_medical'] = date( 'd/m/Y', $row['date_medical'] );
 }
-$array_id_specialist_kham_benh = array();
-$_sql = 'SELECT id,name_specialist FROM nv4_vi_kham_benh_specialist';
-$_query = $db->query( $_sql );
-while( $_row = $_query->fetch() )
-{
-	$array_id_specialist_kham_benh[$_row['id']] = $_row;
-}
-
+$array_type[1] = 'Tái khám';
+$array_status[1] = 'Đã duyệt';
 
 $xtpl = new XTemplate( $op . '.tpl', NV_ROOTDIR . '/themes/' . $module_info['template'] . '/modules/' . $module_file );
 $xtpl->assign( 'LANG', $lang_module );
@@ -111,15 +121,6 @@ $xtpl->assign( 'NV_ASSETS_DIR', NV_ASSETS_DIR );
 $xtpl->assign( 'OP', $op );
 $xtpl->assign( 'ROW', $row );
 
-foreach( $array_id_specialist_kham_benh as $value )
-{
-	$xtpl->assign( 'OPTION', array(
-		'key' => $value['id'],
-		'title' => $value['name_specialist'],
-		'selected' => ($value['id'] == $row['id_specialist']) ? ' selected="selected"' : ''
-	) );
-	$xtpl->parse( 'main.select_id_specialist' );
-}
 
 if( ! empty( $error ) )
 {

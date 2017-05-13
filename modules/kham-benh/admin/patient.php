@@ -30,7 +30,7 @@ if ($nv_Request->isset_request('submit', 'post')) {
     $row['name'] = $nv_Request->get_title('name', 'post', '');
     $row['year'] = $nv_Request->get_int('year', 'post', 0);
     $row['email'] = $nv_Request->get_title('email', 'post', '');
-    $row['phone'] = $nv_Request->get_int('phone', 'post', 0);
+    $row['phone'] = $nv_Request->get_title('phone', 'post', '');
     $row['sex'] = $nv_Request->get_int('sex', 'post', 0);
     $row['address'] = $nv_Request->get_title('address', 'post', '');
     $row['status'] = $nv_Request->get_int('status', 'post', 0);

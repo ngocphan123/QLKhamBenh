@@ -9,6 +9,12 @@
 <form class="form-horizontal" action="{NV_BASE_SITEURL}index.php?{NV_LANG_VARIABLE}={NV_LANG_DATA}&amp;{NV_NAME_VARIABLE}={MODULE_NAME}&amp;{NV_OP_VARIABLE}={OP}" method="post">
 	<input type="hidden" name="id" value="{ROW.id}" />
 	<div class="form-group">
+		<label class="col-sm-5 col-md-4 control-label"><strong>{LANG.id_patient}</strong></label>
+		<div class="col-sm-19 col-md-20">
+			<input class="form-control" type="text" name="id_patient" value="{ROW.id_patient}" pattern="^[0-9]*$"  oninvalid="setCustomValidity( nv_digits )" oninput="setCustomValidity('')" />
+		</div>
+	</div>
+	<div class="form-group">
 		<label class="col-sm-5 col-md-4 control-label"><strong>{LANG.date_medical}</strong></label>
 		<div class="col-sm-19 col-md-20">
 			<div class="input-group">
@@ -23,11 +29,28 @@
 	<div class="form-group">
 		<label class="col-sm-5 col-md-4 control-label"><strong>{LANG.id_specialist}</strong></label>
 		<div class="col-sm-19 col-md-20">
-			<select class="form-control" name="id_specialist">
+			<input class="form-control" type="text" name="id_specialist" value="{ROW.id_specialist}" pattern="^[0-9]*$"  oninvalid="setCustomValidity( nv_digits )" oninput="setCustomValidity('')" />
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="col-sm-5 col-md-4 control-label"><strong>{LANG.type}</strong> <span class="red">(*)</span></label>
+		<div class="col-sm-19 col-md-20">
+			<select class="form-control" name="type">
 				<option value=""> --- </option>
-				<!-- BEGIN: select_id_specialist -->
+				<!-- BEGIN: select_type -->
 				<option value="{OPTION.key}" {OPTION.selected}>{OPTION.title}</option>
-				<!-- END: select_id_specialist -->
+				<!-- END: select_type -->
+			</select>
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="col-sm-5 col-md-4 control-label"><strong>{LANG.status}</strong> <span class="red">(*)</span></label>
+		<div class="col-sm-19 col-md-20">
+			<select class="form-control" name="status">
+				<option value=""> --- </option>
+				<!-- BEGIN: select_status -->
+				<option value="{OPTION.key}" {OPTION.selected}>{OPTION.title}</option>
+				<!-- END: select_status -->
 			</select>
 		</div>
 	</div>
