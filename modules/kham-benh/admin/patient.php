@@ -57,9 +57,12 @@ if ($nv_Request->isset_request('submit', 'post')) {
                 $code_patient = '';
                 if (empty($row['id'])) {
                     $last_id = $db->lastInsertId();
-                    $code_patient = 'BN' . $last_id;
-                    $db->query('UPDATE ' . NV_PREFIXLANG . '_' . $module_data . '_patient SET code_patient = ' . $db->quote($code_patient) . ' WHERE id = ' . $last_id);
+
+                } else {
+                    $last_id = $row['id'];
                 }
+                $code_patient = 'BN' . $last_id;
+                $db->query('UPDATE ' . NV_PREFIXLANG . '_' . $module_data . '_patient SET code_patient = ' . $db->quote($code_patient) . ' WHERE id = ' . $last_id);
                 $nv_Cache->delMod($module_name);
                 Header('Location: ' . NV_BASE_ADMINURL . 'index.php?' . NV_LANG_VARIABLE . '=' . NV_LANG_DATA . '&' . NV_NAME_VARIABLE . '=' . $module_name . '&' . NV_OP_VARIABLE . '=' . $op);
                 die();
