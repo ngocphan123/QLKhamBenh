@@ -18,7 +18,7 @@ $lang_translator['langtype'] = 'lang_module';
 
 $lang_module['main'] = 'Trang chính';
 $lang_module['config'] = 'Cấu hình';
-$lang_module['save'] = 'Save';
+$lang_module['save'] = 'Lưu';
 $lang_module['search'] = 'Tìm kiếm';
 
 //Lang for function doctor
@@ -80,6 +80,11 @@ $lang_module['status'] = 'Trạng thái khám bệnh';
 $lang_module['order'] = 'Đặt lịch';
 $lang_module['id_patient'] = 'Mã bệnh nhân';
 $lang_module['id_doctor'] = 'Bác sĩ';
-$lang_module['date_medical'] = 'ngày khám';
+$lang_module['date_medical'] = 'Ngày khám';
 $lang_module['id_specialist'] = 'Chuyên khoa';
 
+//Lang for function order
+$lang_module['type'] = 'Loại';
+$lang_module['confirm'] = 'Lưu và xác nhận';
+$lang_module['dis_titile_email'] = 'Thông báo lịch khám bệnh';
+$lang_module['dis_content_email'] = '<strong>Xin kính chào quý khách! <br/> Lịch khám của quý khách đã được chúng tôi xác nhận. Mời quý khách tới phòng khám ABC, "%s" vào ngày "%s" để thăm khám. Quý khách sẽ được khám bởi bác sĩ "%s".</strong>';

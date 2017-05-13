@@ -1,4 +1,5 @@
 <!-- BEGIN: main -->
+<link type="text/css" href="{NV_BASE_SITEURL}{NV_ASSETS_DIR}/js/jquery-ui/jquery-ui.min.css" rel="stylesheet" />
 <!-- BEGIN: view -->
 <div class="well">
 <form action="{NV_BASE_ADMINURL}index.php" method="get">
@@ -29,13 +30,16 @@
 					<th>{LANG.id_doctor}</th>
 					<th>{LANG.date_medical}</th>
 					<th>{LANG.id_specialist}</th>
+					<th>{LANG.type}</th>
+					<th>{LANG.status}</th>
+					<th class="w100 text-center">{LANG.active}</th>
 					<th class="w150">&nbsp;</th>
 				</tr>
 			</thead>
 			<!-- BEGIN: generate_page -->
 			<tfoot>
 				<tr>
-					<td class="text-center" colspan="6">{NV_GENERATE_PAGE}</td>
+					<td class="text-center" colspan="9">{NV_GENERATE_PAGE}</td>
 				</tr>
 			</tfoot>
 			<!-- END: generate_page -->
@@ -47,6 +51,9 @@
 					<td> {VIEW.id_doctor} </td>
 					<td> {VIEW.date_medical} </td>
 					<td> {VIEW.id_specialist} </td>
+					<td> {VIEW.type} </td>
+					<td> {VIEW.status} </td>
+					<td class="text-center"><input type="checkbox" name="status" id="change_status_{VIEW.id}" value="{VIEW.id}" {CHECK} onclick="nv_change_status({VIEW.id});" /></td>
 					<td class="text-center"><i class="fa fa-edit fa-lg">&nbsp;</i> <a href="{VIEW.link_edit}#edit">{LANG.edit}</a> - <em class="fa fa-trash-o fa-lg">&nbsp;</em> <a href="{VIEW.link_delete}" onclick="return confirm(nv_is_del_confirm[0]);">{LANG.delete}</a></td>
 				</tr>
 				<!-- END: loop -->
@@ -66,7 +73,7 @@
 	<div class="form-group">
 		<label class="col-sm-5 col-md-4 control-label"><strong>{LANG.id_patient}</strong></label>
 		<div class="col-sm-19 col-md-20">
-			<input class="form-control" type="text" name="id_patient" value="{ROW.id_patient}" pattern="^[0-9]*$"  oninvalid="setCustomValidity( nv_digits )" oninput="setCustomValidity('')" />
+			<input class="form-control" type="text" name="id_patient" value="{ROW.id_patient}" pattern="^[0-9]*$" disabled="true" oninvalid="setCustomValidity( nv_digits )" oninput="setCustomValidity('')" />
 		</div>
 	</div>
 	<div class="form-group">
@@ -83,12 +90,7 @@
 	<div class="form-group">
 		<label class="col-sm-5 col-md-4 control-label"><strong>{LANG.date_medical}</strong></label>
 		<div class="col-sm-19 col-md-20">
-			<select class="form-control" name="date_medical">
-				<option value=""> --- </option>
-				<!-- BEGIN: select_date_medical -->
-				<option value="{OPTION.key}" {OPTION.selected}>{OPTION.title}</option>
-				<!-- END: select_date_medical -->
-			</select>
+			<input class="form-control" type="text" name="date_medical" id="date_medical" value="{ROW.date_medical}"  oninvalid="setCustomValidity( nv_digits )" oninput="setCustomValidity('')" />
 		</div>
 	</div>
 	<div class="form-group">
@@ -103,6 +105,42 @@
 		</div>
 	</div>
 	<div class="form-group" style="text-align: center"><input class="btn btn-primary" name="submit" type="submit" value="{LANG.save}" /></div>
+	<div class="form-group" style="text-align: center"><input class="btn btn-primary" name="confirm" type="submit" value="{LANG.confirm}" /></div>
 </form>
 </div></div>
+
+<script type="text/javascript">
+//<![CDATA[
+	function nv_change_status(id) {
+		var new_status = $('#change_status_' + id).is(':checked') ? true : false;
+		if (confirm(nv_is_change_act_confirm[0])) {
+			var nv_timer = nv_settimeout_disable('change_status_' + id, 5000);
+			$.post(script_name + '?' + nv_name_variable + '=' + nv_module_name + '&' + nv_fc_variable + '=order&nocache=' + new Date().getTime(), 'change_status=1&id='+id, function(res) {
+				var r_split = res.split('_');
+				if (r_split[0] != 'OK') {
+					alert(nv_is_change_act_confirm[2]);
+				}
+			});
+		}
+		else{
+			$('#change_status_' + id).prop('checked', new_status ? false : true );
+		}
+		return;
+	}
+
+
+//]]>
+</script>
+<script type="text/javascript" src="{NV_BASE_SITEURL}{NV_ASSETS_DIR}/js/jquery-ui/jquery-ui.min.js"></script>
+<script type="text/javascript" src="{NV_BASE_SITEURL}{NV_ASSETS_DIR}/js/language/jquery.ui.datepicker-{NV_LANG_INTERFACE}.js"></script>
+
+<script type="text/javascript">
+	$("#date_medical").datepicker({
+		dateFormat : "dd/mm/yy",
+		changeMonth : true,
+		changeYear : true,
+		showOtherMonths : true,
+	});
+
+</script>
 <!-- END: main -->
