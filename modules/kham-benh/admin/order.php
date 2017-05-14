@@ -24,6 +24,7 @@ if( $nv_Request->isset_request( 'change_status', 'post, get' ) )
 		$query = 'UPDATE ' . NV_PREFIXLANG . '_' . $module_data . '_order SET status=' . intval( $status ) . ' WHERE id=' . $id;
 		$db->query( $query );
 		$content = 'OK_' . $id;
+
 	}
 	$nv_Cache->delMod( $module_name );
 	include NV_ROOTDIR . '/includes/header.php';
@@ -148,10 +149,19 @@ if ( $nv_Request->isset_request( 'confirm', 'post' ) )
 						//Gửi email cho khách hàng xác nhận lịch khám
 						$cus = $db->query( 'SELECT * FROM ' . NV_PREFIXLANG . '_' . $module_data . '_patient WHERE id=' . $row['id'] )->fetch();
 						$cus['date_medical'] = nv_date('d/m/Y', $row['date_medical']);
+						 $array_id_doctor_kham_benh = array();
+						$where ='';
+						if($row['id_specialist'] !=0) $where = ' where specialist_id=' . $row['id_specialist'];
+						$_sql = 'SELECT id,name FROM nv4_vi_kham_benh_doctor' . $where;
+						$_query = $db->query( $_sql );
+						while( $_row = $_query->fetch() )
+						{
+							$array_id_doctor_kham_benh[$_row['id']] = $_row;
+						}
 						 nv_sendmail(array(
                                 $lang_module['dis_titile_email'],
                                 $global_config['smtp_username']
-                            ), $cus['email'], $lang_module['dis_titile_email'], sprintf($lang_module['dis_content_email'], $cus['date_medical'],$cus['date_medical'],$cus['date_medical']));
+                            ), $cus['email'], $lang_module['dis_titile_email'], sprintf($lang_module['dis_content_email'], $cus['date_medical'],$array_id_doctor_kham_benh[$row['id_doctor']]['name']));
 
 						$nv_Cache->delMod( $module_name );
 						Header( 'Location: ' . NV_BASE_ADMINURL . 'index.php?' . NV_LANG_VARIABLE . '=' . NV_LANG_DATA . '&' . NV_NAME_VARIABLE . '=' . $module_name . '&' . NV_OP_VARIABLE . '=' . $op );
@@ -177,7 +187,7 @@ $array_status =array(
 $array_id_doctor_kham_benh = array();
 $where ='';
 if($row['id_specialist'] !=0) $where = ' where specialist_id=' . $row['id_specialist'];
-$_sql = 'SELECT id,name FROM nv4_vi_kham_benh_doctor' . $where;//print_r($_sql);die('ok');
+$_sql = 'SELECT id,name FROM nv4_vi_kham_benh_doctor' . $where;
 $_query = $db->query( $_sql );
 while( $_row = $_query->fetch() )
 {

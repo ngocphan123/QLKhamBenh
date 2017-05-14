@@ -13,5 +13,5 @@ if ( ! defined( 'NV_ADMIN' ) or ! defined( 'NV_MAINFILE' ) or ! defined( 'NV_IS_
 define( 'NV_IS_FILE_ADMIN', true );
 
 
-$allow_func = array( 'main', 'doctor', 'specialist','patient', 'order');
+$allow_func = array( 'main', 'doctor', 'specialist','patient', 'order', 'history');
 require_once NV_ROOTDIR . '/modules/' . $module_file . '/global.functions.php';

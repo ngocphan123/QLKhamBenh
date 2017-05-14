@@ -87,4 +87,12 @@ $lang_module['id_specialist'] = 'Chuyên khoa';
 $lang_module['type'] = 'Loại';
 $lang_module['confirm'] = 'Lưu và xác nhận';
 $lang_module['dis_titile_email'] = 'Thông báo lịch khám bệnh';
-$lang_module['dis_content_email'] = '<strong>Xin kính chào quý khách! <br/> Lịch khám của quý khách đã được chúng tôi xác nhận. Mời quý khách tới phòng khám ABC, "%s" vào ngày "%s" để thăm khám. Quý khách sẽ được khám bởi bác sĩ "%s".</strong>';
+$lang_module['dis_content_email'] = '<strong>Xin kính chào quý khách! <br/> Lịch khám của quý khách đã được chúng tôi xác nhận. Mời quý khách tới phòng khám ABC vào ngày %s để thăm khám. Quý khách sẽ được khám bởi bác sĩ %s.<br/>Xin chân thành cảm ơn!</strong>';
+
+//Lang for function history
+$lang_module['history'] = 'Lịch sử khám bệnh';
+$lang_module['prescription'] = 'Đơn thuốc';
+$lang_module['date_appointment'] = 'Hẹn tái khám';
+$lang_module['money_medical'] = 'Tiền khám';
+$lang_module['error_required_id_patient'] = 'Lỗi: bạn cần nhập dữ liệu cho Mã bệnh nhân';
+$lang_module['error_required_id_doctor'] = 'Lỗi: bạn cần nhập dữ liệu cho Bác sĩ';

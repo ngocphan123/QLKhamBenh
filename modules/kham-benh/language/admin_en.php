@@ -72,3 +72,11 @@ $lang_module['id_specialist'] = 'Id specialist';
 
 //Lang for function order
 $lang_module['type'] = 'Type';
+
+//Lang for function history
+$lang_module['history'] = 'history';
+$lang_module['prescription'] = 'Prescription';
+$lang_module['date_appointment'] = 'Date appointment';
+$lang_module['money_medical'] = 'Money medical';
+$lang_module['error_required_id_patient'] = 'Error: Required fields enter the Id patient';
+$lang_module['error_required_id_doctor'] = 'Error: Required fields enter the Id doctor';
