@@ -25,6 +25,7 @@ if ($nv_Request->isset_request('submit', 'post')) {
     } else {
         $row['date_medical'] = 0;
     }
+	$row['hour_medical'] = $nv_Request->get_string('hour', 'post', '');
     $row['id_specialist'] = $nv_Request->get_int('id_specialist', 'post', 0);
     if ($type == 1) {
         $row['id'] = 0;
@@ -41,7 +42,7 @@ if ($nv_Request->isset_request('submit', 'post')) {
         }
         if (empty($error)) {
             $str = explode('BN', $id_patient);
-            $sql = 'INSERT INTO ' . NV_PREFIXLANG . '_' . $module_data . '_order(id_patient, date_medical, id_specialist, type)VALUES(' . $str[1] . ',' . $row['date_medical'] . ',' . $row['id_specialist'] . ',' . $type . ')';
+            $sql = 'INSERT INTO ' . NV_PREFIXLANG . '_' . $module_data . '_order(id_patient, date_medical, hours_medical, id_specialist, type)VALUES(' . $str[1] . ',' . $row['date_medical'] . ',"' . $row['hour_medical'] . '",' . $row['id_specialist'] . ',' . $type . ')';
             $db->query($sql);
             $nv_Cache->delMod($module_name);
             $notification = sprintf($lang_module['notification'], $id_patient);
@@ -83,7 +84,7 @@ if ($nv_Request->isset_request('submit', 'post')) {
                     $id_patien = $db->lastInsertId();
                     $code_patient = 'BN' . $id_patien;
                     $db->query('UPDATE ' . NV_PREFIXLANG . '_' . $module_data . '_patient SET code_patient = ' . $db->quote($code_patient) . ' WHERE id = ' . $id_patien);
-                    $sql = 'INSERT INTO ' . NV_PREFIXLANG . '_' . $module_data . '_order(id_patient, date_medical, id_specialist, type)VALUES(' . $id_patien . ',' . $row['date_medical'] . ',' . $row['id_specialist'] . ',' . $type . ')';
+                    $sql = 'INSERT INTO ' . NV_PREFIXLANG . '_' . $module_data . '_order(id_patient, date_medical, hours_medical, id_specialist, type)VALUES(' . $id_patien . ',' . $row['date_medical'] . ',"' . $row['hour_medical'] . '",' . $row['id_specialist'] . ',' . $type . ')';
                     $db->query($sql);
                     $nv_Cache->delMod($module_name);
                     $notification = sprintf($lang_module['notification'], $code_patient);
@@ -129,6 +130,22 @@ foreach ($array_sex as $key => $title) {
         'title' => $title,
     ));
     $xtpl->parse('main.radio_sex');
+}
+$array_hours = array(
+	0 => '8h đến 9h',
+	1 => '9h đến 10h',
+	2 => '10 đến 11h',
+	3 => '13h đến 14h',
+	4 => '14h đến 15h',
+	5 => '15h đến 16h',
+	6 => '16h đến 17h'
+);
+foreach ($array_hours as $key => $value) {
+    $xtpl->assign('HOURS', array(
+        'key' => $key,
+        'title' => $value,
+    ));
+    $xtpl->parse('main.hour_specialist');
 }
 foreach ($array_id_specialist_kham_benh as $value) {
     $xtpl->assign('OPTION', array(

@@ -29,6 +29,7 @@
 					<th>{LANG.id_patient}</th>
 					<th>{LANG.id_doctor}</th>
 					<th>{LANG.date_medical}</th>
+					<th>{LANG.hour_medical}</th>
 					<th>{LANG.id_specialist}</th>
 					<th>{LANG.type}</th>
 					<th>{LANG.status}</th>
@@ -50,6 +51,7 @@
 					<td> {VIEW.id_patient} </td>
 					<td> {VIEW.id_doctor} </td>
 					<td> {VIEW.date_medical} </td>
+					<td> {VIEW.hours_medical} </td>
 					<td> {VIEW.id_specialist} </td>
 					<td> {VIEW.type} </td>
 					<td> {VIEW.status} </td>

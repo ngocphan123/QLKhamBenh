@@ -81,6 +81,7 @@ $lang_module['order'] = 'Đặt lịch';
 $lang_module['id_patient'] = 'Mã bệnh nhân';
 $lang_module['id_doctor'] = 'Bác sĩ';
 $lang_module['date_medical'] = 'Ngày khám';
+$lang_module['hour_medical'] = 'Giờ khám';
 $lang_module['id_specialist'] = 'Chuyên khoa';
 
 //Lang for function order
