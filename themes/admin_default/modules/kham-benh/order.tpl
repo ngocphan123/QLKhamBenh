@@ -75,7 +75,7 @@
 	<div class="form-group">
 		<label class="col-sm-5 col-md-4 control-label"><strong>{LANG.id_patient}</strong></label>
 		<div class="col-sm-19 col-md-20">
-			<input class="form-control" type="text" name="id_patient" value="{ROW.id_patient}" pattern="^[0-9]*$" disabled="true" oninvalid="setCustomValidity( nv_digits )" oninput="setCustomValidity('')" />
+			<input class="form-control" type="text" name="id_patient" value="{ROW.id_patient}" pattern="^[0-9]*$" disabled oninvalid="setCustomValidity( nv_digits )" oninput="setCustomValidity('')" />
 		</div>
 	</div>
 	<div class="form-group">

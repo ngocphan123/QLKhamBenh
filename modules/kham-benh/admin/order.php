@@ -121,7 +121,6 @@ else
 }
 if ( $nv_Request->isset_request( 'confirm', 'post' ) )
 {
-	$row['id_patient'] = $nv_Request->get_int( 'id_patient', 'post', 0 );
 	$row['id_doctor'] = $nv_Request->get_int( 'id_doctor', 'post', 0 );
 	if (preg_match('/^([0-9]{1,2})\/([0-9]{1,2})\/([0-9]{4})$/', $nv_Request->get_string('date_medical', 'post'), $m)) {
         $_hour = 0;
@@ -142,7 +141,6 @@ if ( $nv_Request->isset_request( 'confirm', 'post' ) )
 			//$stmt->bindParam( ':id_specialist', $row['id_specialist'], PDO::PARAM_INT );
 			//$stmt->bindParam( ':type', $row['type'], PDO::PARAM_INT );
 			$stmt->bindParam( ':status', $row['status'], PDO::PARAM_INT );
-
 			$exc = $stmt->execute();
 			if( $exc )
 					{
