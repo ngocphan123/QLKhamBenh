@@ -212,6 +212,7 @@ if( $show_view )
 		$view['specialist_id'] = $array_specialist_id_kham_benh[$view['specialist_id']]['name_specialist'];
 		$view['link_edit'] = NV_BASE_ADMINURL . 'index.php?' . NV_LANG_VARIABLE . '=' . NV_LANG_DATA . '&amp;' . NV_NAME_VARIABLE . '=' . $module_name . '&amp;' . NV_OP_VARIABLE . '=' . $op . '&amp;id=' . $view['id'];
 		$view['link_delete'] = NV_BASE_ADMINURL . 'index.php?' . NV_LANG_VARIABLE . '=' . NV_LANG_DATA . '&amp;' . NV_NAME_VARIABLE . '=' . $module_name . '&amp;' . NV_OP_VARIABLE . '=' . $op . '&amp;delete_id=' . $view['id'] . '&amp;delete_checkss=' . md5( $view['id'] . NV_CACHE_PREFIX . $client_info['session_id'] );
+		$view['datetime'] = date('d/m/Y',$view['datetime']);
 		$xtpl->assign( 'VIEW', $view );
 		$xtpl->parse( 'main.view.loop' );
 	}
