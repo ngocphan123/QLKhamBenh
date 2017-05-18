@@ -34,7 +34,7 @@
 				<div class="form-group">
 					<label class="col-sm-5 col-md-4 control-label"><strong>{LANG.year}</strong></label>
 					<div class="col-sm-19 col-md-20">
-						<input class="form-control" type="text" name="year" value="{ROW.year}" pattern="^[0-9]*$"  />
+						<input class="form-control" type="text" name="year" value="{ROW.year}" onkeypress="return (event.charCode == 8 || event.charCode == 0) ? null : event.charCode >= 48 && event.charCode <= 57"  />
 					</div>
 				</div>
 				<div class="form-group">
