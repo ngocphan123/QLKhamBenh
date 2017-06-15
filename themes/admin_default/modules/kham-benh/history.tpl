@@ -24,8 +24,7 @@
 		<table class="table table-striped table-bordered table-hover">
 			<thead>
 				<tr>
-					<th class="w100">{LANG.number}</th>
-					<th>{LANG.id_patient}</th>
+					<th class="w100">{LANG.id_patient}</th>
 					<th>{LANG.id_doctor}</th>
 					<th>{LANG.prescription}</th>
 					<th>{LANG.date_medical}</th>
@@ -37,15 +36,20 @@
 			<!-- BEGIN: generate_page -->
 			<tfoot>
 				<tr>
-					<td class="text-center" colspan="8">{NV_GENERATE_PAGE}</td>
+					<td class="text-center" colspan="7">{NV_GENERATE_PAGE}</td>
 				</tr>
 			</tfoot>
 			<!-- END: generate_page -->
 			<tbody>
 				<!-- BEGIN: loop -->
 				<tr>
-					<td> {VIEW.number} </td>
-					<td> {VIEW.id_patient} </td>
+					<td>
+						<select class="form-control" id="id_weight_{VIEW.id}" onchange="nv_change_weight('{VIEW.id}');">
+						<!-- BEGIN: id_patient_loop -->
+							<option value="{WEIGHT.key}"{WEIGHT.selected}>{WEIGHT.title}</option>
+						<!-- END: id_patient_loop -->
+					</select>
+				</td>
 					<td> {VIEW.id_doctor} </td>
 					<td> {VIEW.prescription} </td>
 					<td> {VIEW.date_medical} </td>
@@ -60,6 +64,8 @@
 </form>
 <!-- END: view -->
 
+<link type="text/css" href="{NV_BASE_SITEURL}{NV_ASSETS_DIR}/js/jquery-ui/jquery-ui.min.css" rel="stylesheet" />
+
 <!-- BEGIN: error -->
 <div class="alert alert-warning">{ERROR}</div>
 <!-- END: error -->
@@ -70,40 +76,86 @@
 	<div class="form-group">
 		<label class="col-sm-5 col-md-4 control-label"><strong>{LANG.id_patient}</strong> <span class="red">(*)</span></label>
 		<div class="col-sm-19 col-md-20">
-			<input class="form-control" type="text" name="id_patient" value="{ROW.id_patient}" pattern="^[0-9]*$"  oninvalid="setCustomValidity( nv_digits )" oninput="setCustomValidity('')" required="required" />
+			<input class="form-control" type="text" name="id_patient" value="{ROW.id_patient}" required="required" oninvalid="setCustomValidity( nv_required )" oninput="setCustomValidity('')" />
 		</div>
 	</div>
 	<div class="form-group">
 		<label class="col-sm-5 col-md-4 control-label"><strong>{LANG.id_doctor}</strong> <span class="red">(*)</span></label>
 		<div class="col-sm-19 col-md-20">
-			<input class="form-control" type="text" name="id_doctor" value="{ROW.id_doctor}" pattern="^[0-9]*$"  oninvalid="setCustomValidity( nv_digits )" oninput="setCustomValidity('')" required="required" />
+			<select class="form-control" name="id_doctor">
+				<option value=""> --- </option>
+				<!-- BEGIN: select_id_doctor -->
+				<option value="{OPTION.key}" {OPTION.selected}>{OPTION.title}</option>
+				<!-- END: select_id_doctor -->
+			</select>
 		</div>
 	</div>
 	<div class="form-group">
-		<label class="col-sm-5 col-md-4 control-label"><strong>{LANG.prescription}</strong></label>
+		<label class="col-sm-5 col-md-4 control-label"><strong>{LANG.prescription}</strong> <span class="red">(*)</span></label>
 		<div class="col-sm-19 col-md-20">
-			<textarea class="form-control" style="height:100px;" cols="75" rows="5" name="prescription">{ROW.prescription}</textarea>
-		</div>
+{ROW.prescription}		</div>
 	</div>
 	<div class="form-group">
-		<label class="col-sm-5 col-md-4 control-label"><strong>{LANG.date_medical}</strong></label>
+		<label class="col-sm-5 col-md-4 control-label"><strong>{LANG.date_medical}</strong> <span class="red">(*)</span></label>
 		<div class="col-sm-19 col-md-20">
-			<input class="form-control" type="text" name="date_medical" value="{ROW.date_medical}" pattern="^[0-9]*$"  oninvalid="setCustomValidity( nv_digits )" oninput="setCustomValidity('')" />
+			<div class="input-group">
+			<input class="form-control" type="text" name="date_medical" value="{ROW.date_medical}" id="date_medical" pattern="^[0-9]{2,2}\/[0-9]{2,2}\/[0-9]{1,4}$" required="required" oninvalid="setCustomValidity( nv_required )" oninput="setCustomValidity('')" />
+				<span class="input-group-btn">
+					<button class="btn btn-default" type="button" id="date_medical-btn">
+						<em class="fa fa-calendar fa-fix"> </em>
+					</button> </span>
+				</div>
 		</div>
 	</div>
 	<div class="form-group">
 		<label class="col-sm-5 col-md-4 control-label"><strong>{LANG.date_appointment}</strong></label>
 		<div class="col-sm-19 col-md-20">
-			<input class="form-control" type="text" name="date_appointment" value="{ROW.date_appointment}" pattern="^[0-9]*$"  oninvalid="setCustomValidity( nv_digits )" oninput="setCustomValidity('')" />
+			<div class="input-group">
+			<input class="form-control" type="text" name="date_appointment" value="{ROW.date_appointment}" id="date_appointment" pattern="^[0-9]{2,2}\/[0-9]{2,2}\/[0-9]{1,4}$" />
+				<span class="input-group-btn">
+					<button class="btn btn-default" type="button" id="date_appointment-btn">
+						<em class="fa fa-calendar fa-fix"> </em>
+					</button> </span>
+				</div>
 		</div>
 	</div>
 	<div class="form-group">
-		<label class="col-sm-5 col-md-4 control-label"><strong>{LANG.money_medical}</strong></label>
+		<label class="col-sm-5 col-md-4 control-label"><strong>{LANG.money_medical}</strong> <span class="red">(*)</span></label>
 		<div class="col-sm-19 col-md-20">
-			<input class="form-control" type="text" name="money_medical" value="{ROW.money_medical}" pattern="^[0-9]*$"  oninvalid="setCustomValidity( nv_digits )" oninput="setCustomValidity('')" />
+			<input class="form-control" type="text" name="money_medical" value="{ROW.money_medical}" pattern="^[0-9]*$"  oninvalid="setCustomValidity( nv_digits )" oninput="setCustomValidity('')" required="required" />
 		</div>
 	</div>
 	<div class="form-group" style="text-align: center"><input class="btn btn-primary" name="submit" type="submit" value="{LANG.save}" /></div>
 </form>
 </div></div>
+
+<script type="text/javascript" src="{NV_BASE_SITEURL}{NV_ASSETS_DIR}/js/jquery-ui/jquery-ui.min.js"></script>
+<script type="text/javascript" src="{NV_BASE_SITEURL}{NV_ASSETS_DIR}/js/language/jquery.ui.datepicker-{NV_LANG_INTERFACE}.js"></script>
+
+<script type="text/javascript">
+//<![CDATA[
+	$("#date_medical,#date_appointment").datepicker({
+		dateFormat : "dd/mm/yy",
+		changeMonth : true,
+		changeYear : true,
+		showOtherMonths : true,
+	});
+
+	function nv_change_weight(id) {
+		var nv_timer = nv_settimeout_disable('id_weight_' + id, 5000);
+		var new_vid = $('#id_weight_' + id).val();
+		$.post(script_name + '?' + nv_name_variable + '=' + nv_module_name + '&' + nv_fc_variable + '=history&nocache=' + new Date().getTime(), 'ajax_action=1&id=' + id + '&new_vid=' + new_vid, function(res) {
+			var r_split = res.split('_');
+			if (r_split[0] != 'OK') {
+				alert(nv_is_change_act_confirm[2]);
+			}
+			window.location.href = script_name + '?' + nv_name_variable + '=' + nv_module_name + '&' + nv_fc_variable + '=history';
+			return;
+		});
+		return;
+	}
+
+
+//]]>
+</script>
 <!-- END: main -->

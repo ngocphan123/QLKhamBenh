@@ -97,3 +97,8 @@ $lang_module['date_appointment'] = 'Hẹn tái khám';
 $lang_module['money_medical'] = 'Tiền khám';
 $lang_module['error_required_id_patient'] = 'Lỗi: bạn cần nhập dữ liệu cho Mã bệnh nhân';
 $lang_module['error_required_id_doctor'] = 'Lỗi: bạn cần nhập dữ liệu cho Bác sĩ';
+
+//Lang for function history
+$lang_module['error_required_prescription'] = 'Lỗi: bạn cần nhập dữ liệu cho Đơn thuốc';
+$lang_module['error_required_date_medical'] = 'Lỗi: bạn cần nhập dữ liệu cho Ngày khám';
+$lang_module['error_required_money_medical'] = 'Lỗi: bạn cần nhập dữ liệu cho Tiền khám';
