@@ -86,19 +86,6 @@
 				</div>
 			</div>
 			<div class="form-group">
-				<label class="col-sm-5 col-md-4 control-label"><strong>Chọn giờ khám:</strong> <span class="red">(*)</span></label>
-				<div class="col-sm-19 col-md-20">
-					<div class="input-group">
-						<select class="form-control" name="hour">
-						<option value=""> --- </option>
-						<!-- BEGIN: hour_specialist -->
-						<option value="{HOURS.title}" {HOURS.selected}>{HOURS.title}</option>
-						<!-- END: hour_specialist -->
-					</select>
-					</div>
-				</div>
-			</div>
-			<div class="form-group">
 				<label class="col-sm-5 col-md-4 control-label"><strong>{LANG.id_specialist}</strong> <span class="red">(*)</span></label>
 				<div class="col-sm-19 col-md-20">
 					<select class="form-control" name="id_specialist">

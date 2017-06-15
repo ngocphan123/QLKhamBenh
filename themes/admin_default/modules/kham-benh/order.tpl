@@ -56,7 +56,7 @@
 					<td> {VIEW.type} </td>
 					<td> {VIEW.status} </td>
 					<td class="text-center"><input type="checkbox" name="status" id="change_status_{VIEW.id}" value="{VIEW.id}" {CHECK} onclick="nv_change_status({VIEW.id});" /></td>
-					<td class="text-center"><i class="fa fa-edit fa-lg">&nbsp;</i> <a href="{VIEW.link_edit}#edit">{LANG.edit}</a> - <em class="fa fa-trash-o fa-lg">&nbsp;</em> <a href="{VIEW.link_delete}" onclick="return confirm(nv_is_del_confirm[0]);">{LANG.delete}</a></td>
+					<td class="text-center"><i class="fa fa-edit fa-lg">&nbsp;</i> <a href="{VIEW.link_edit}#edit">{LANG.edit}</a><!--  - <em class="fa fa-trash-o fa-lg">&nbsp;</em> <a href="{VIEW.link_delete}" onclick="return confirm(nv_is_del_confirm[0]);">{LANG.delete}</a> --></td>
 				</tr>
 				<!-- END: loop -->
 			</tbody>
@@ -72,10 +72,11 @@
 <div class="panel-body">
 <form class="form-horizontal" action="{NV_BASE_ADMINURL}index.php?{NV_LANG_VARIABLE}={NV_LANG_DATA}&amp;{NV_NAME_VARIABLE}={MODULE_NAME}&amp;{NV_OP_VARIABLE}={OP}" method="post">
 	<input type="hidden" name="id" value="{ROW.id}" />
+	<input type="hidden" name="id_patient_edit" value="{ROW.id_patient}"" />
 	<div class="form-group">
 		<label class="col-sm-5 col-md-4 control-label"><strong>{LANG.id_patient}</strong></label>
 		<div class="col-sm-19 col-md-20">
-			<input class="form-control" type="text" name="id_patient" value="{ROW.id_patient}" pattern="^[0-9]*$" disabled oninvalid="setCustomValidity( nv_digits )" oninput="setCustomValidity('')" />
+			<input class="form-control" type="text"  name="id_patient" value="{ROW.id_patient}" pattern="^[0-9]*$" {DISABLED} oninvalid="setCustomValidity( nv_digits )" oninput="setCustomValidity('')" />
 		</div>
 	</div>
 	<div class="form-group">

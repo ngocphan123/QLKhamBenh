@@ -84,10 +84,10 @@ if ($nv_Request->isset_request('submit', 'post')) {
                     $id_patien = $db->lastInsertId();
                     $code_patient = 'BN' . $id_patien;
                     $db->query('UPDATE ' . NV_PREFIXLANG . '_' . $module_data . '_patient SET code_patient = ' . $db->quote($code_patient) . ' WHERE id = ' . $id_patien);
-                    $sql = 'INSERT INTO ' . NV_PREFIXLANG . '_' . $module_data . '_order(id_patient, date_medical, hours_medical, id_specialist, type)VALUES(' . $id_patien . ',' . $row['date_medical'] . ',"' . $row['hour_medical'] . '",' . $row['id_specialist'] . ',' . $type . ')';
+                    $sql = 'INSERT INTO ' . NV_PREFIXLANG . '_' . $module_data . '_order(id_patient, date_medical, id_specialist, type)VALUES(' . $id_patien . ',' . $row['date_medical'] . ',' . $row['id_specialist'] . ',' . $type . ')';
                     $db->query($sql);
                     $nv_Cache->delMod($module_name);
-                    $notification = sprintf($lang_module['notification'], $code_patient);
+                    $notification = sprintf($lang_module['notification'], $id_patien);
                     //Header('Location: ' . NV_BASE_SITEURL . 'index.php?' . NV_LANG_VARIABLE . '=' . NV_LANG_DATA . '&' . NV_NAME_VARIABLE . '=' . $module_name . '&' . NV_OP_VARIABLE . '=' . $op);
                     //die();
                 }

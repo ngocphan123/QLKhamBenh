@@ -130,8 +130,7 @@ if ( $nv_Request->isset_request( 'confirm', 'post' ) )
         $row['date_medical'] = 0;
     }
 	$row['status'] = 1;
-	//$row['id_specialist'] = $nv_Request->get_int( 'id_specialist', 'post', 0 );
-	//$row['type'] = $nv_Request->get_int( 'type', 'post', 0 );
+	$row['id_patient'] = $nv_Request->get_int( 'id_patient_edit', 'post', 0 );
 	try
 		{
 			$stmt = $db->prepare( 'UPDATE ' . NV_PREFIXLANG . '_' . $module_data . '_order SET id_patient = :id_patient, id_doctor = :id_doctor, date_medical = :date_medical, status = :status WHERE id=' . $row['id'] );
@@ -263,6 +262,8 @@ $xtpl->assign( 'MODULE_UPLOAD', $module_upload );
 $xtpl->assign( 'NV_ASSETS_DIR', NV_ASSETS_DIR );
 $xtpl->assign( 'OP', $op );
 $xtpl->assign( 'ROW', $row );
+if(!empty($row['id'])) 
+    $xtpl->assign( 'DISABLED', 'disabled' );
 
 foreach( $array_id_doctor_kham_benh as $value )
 {

@@ -56,7 +56,7 @@
 				<!-- BEGIN: loop -->
 				<tr>
 					<td> {VIEW.number} </td>
-					<td> {VIEW.code_patient} </td>
+					<td> {VIEW.id} </td>
 					<td> {VIEW.name} </td>
 					<td> {VIEW.year} </td>
 					<td> {VIEW.email} </td>
