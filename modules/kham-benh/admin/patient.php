@@ -103,7 +103,7 @@ if (!$nv_Request->isset_request('id', 'post,get')) {
     $db->sqlreset()->select('COUNT(*)')->from('' . NV_PREFIXLANG . '_' . $module_data . '_patient');
     $where = '';
     if (!empty($q)) {
-        $where = 'name LIKE :q_name OR year LIKE :q_year OR email LIKE :q_email OR phone LIKE :q_phone OR sex LIKE :q_sex OR address LIKE :q_address OR status LIKE :q_status';
+        $where = 'code_patient LIKE :q_code_patient OR name LIKE :q_name OR year LIKE :q_year OR email LIKE :q_email OR phone LIKE :q_phone OR sex LIKE :q_sex OR address LIKE :q_address OR status LIKE :q_status';
     }
     if (!empty($status_key)) {
         if (!empty($where)) {
@@ -116,8 +116,9 @@ if (!$nv_Request->isset_request('id', 'post,get')) {
         $db->where($where);
     }
     $sth = $db->prepare($db->sql());
-
+    
     if (!empty($q)) {
+        $sth->bindValue(':q_code_patient', '%' . $q . '%');
         $sth->bindValue(':q_name', '%' . $q . '%');
         $sth->bindValue(':q_year', '%' . $q . '%');
         $sth->bindValue(':q_email', '%' . $q . '%');
@@ -128,11 +129,11 @@ if (!$nv_Request->isset_request('id', 'post,get')) {
     }
     $sth->execute();
     $num_items = $sth->fetchColumn();
-
+   
     $db->select('*')->order('id DESC')->limit($per_page)->offset(($page - 1) * $per_page);
     $sth = $db->prepare($db->sql());
-
     if (!empty($q)) {
+        $sth->bindValue(':q_code_patient', '%' . $q . '%');
         $sth->bindValue(':q_name', '%' . $q . '%');
         $sth->bindValue(':q_year', '%' . $q . '%');
         $sth->bindValue(':q_email', '%' . $q . '%');
