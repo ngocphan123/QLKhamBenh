@@ -37,6 +37,18 @@ if( $nv_Request->isset_request( 'ajax_action', 'post' ) )
 	include NV_ROOTDIR . '/includes/footer.php';
 	exit();
 }
+$id_specialist= $nv_Request->get_int( 'id_specialist', 'post', 0 );
+$doctor = 0;
+if(!empty($id_specialist) and !($nv_Request->isset_request( 'submit', 'post' ))) {
+    $result_doctor = $db->query('SELECT `id`, `name` FROM ' . NV_PREFIXLANG . '_' . $module_data . '_doctor WHERE `specialist_id` = '.$id_specialist);
+    $select_doctor='<select class="form-control" name="id_doctor">';
+    while($row_doctor = $result_doctor->fetch()) {
+        $select_doctor .='<option value="'.$row_doctor['id'].'">'.$row_doctor['name'].'</option>';
+    }
+    $select_doctor .='</select>';
+    die($select_doctor);
+    
+}
 if ( $nv_Request->isset_request( 'delete_id', 'get' ) and $nv_Request->isset_request( 'delete_checkss', 'get' ))
 {
 	$id = $nv_Request->get_int( 'delete_id', 'get' );
@@ -70,7 +82,7 @@ $error = array();
 $row['id'] = $nv_Request->get_int( 'id', 'post,get', 0 );
 if ( $nv_Request->isset_request( 'submit', 'post' ) )
 {
-	$row['id_patient'] = $nv_Request->get_int( 'id_patient', 'post', 0 );
+	$row['id_patient'] = $nv_Request->get_int( 'id_patient', 'post', 0 );	
 	$row['id_doctor'] = $nv_Request->get_int( 'id_doctor', 'post', 0 );
 	$row['prescription'] = $nv_Request->get_editor( 'prescription', '', NV_ALLOWED_HTML_TAGS );
 	if( preg_match( '/^([0-9]{1,2})\/([0-9]{1,2})\/([0-9]{4})$/', $nv_Request->get_string( 'date_medical', 'post' ), $m ) )
@@ -116,6 +128,7 @@ if ( $nv_Request->isset_request( 'submit', 'post' ) )
 		$error[] = $lang_module['error_required_money_medical'];
 	}
 
+	$insert = false;
 	if( empty( $error ) )
 	{
 		try
@@ -123,10 +136,12 @@ if ( $nv_Request->isset_request( 'submit', 'post' ) )
 			if( empty( $row['id'] ) )
 			{
 				$stmt = $db->prepare( 'INSERT INTO ' . NV_PREFIXLANG . '_' . $module_data . '_history (id_patient, id_doctor, prescription, date_medical, date_appointment, money_medical) VALUES (:id_patient, :id_doctor, :prescription, :date_medical, :date_appointment, :money_medical)' );
+				$insert = true;
 			}
 			else
 			{
 				$stmt = $db->prepare( 'UPDATE ' . NV_PREFIXLANG . '_' . $module_data . '_history SET id_patient = :id_patient, id_doctor = :id_doctor, prescription = :prescription, date_medical = :date_medical, date_appointment = :date_appointment, money_medical = :money_medical WHERE id=' . $row['id'] );
+				$insert = false;
 			}
 			$stmt->bindParam( ':id_patient', $row['id_patient'], PDO::PARAM_INT );
 			$stmt->bindParam( ':id_doctor', $row['id_doctor'], PDO::PARAM_INT );
@@ -138,6 +153,10 @@ if ( $nv_Request->isset_request( 'submit', 'post' ) )
 			$exc = $stmt->execute();
 			if( $exc )
 			{
+			    if($insert and !empty($row['date_appointment'])) {
+			        $id_specialist= $db->query('SELECT `specialist_id` FROM `nv4_vi_kham_benh_doctor` WHERE `id` = '.$row['id_doctor'])->fetchColumn();
+			        $db->query('INSERT INTO `nv4_vi_kham_benh_order`( `id_patient`, `id_doctor`, `date_medical`, `id_specialist`, `type`, `status`) VALUES ('.$row['id_patient'].','.$row['id_doctor'].','.$db->quote($row['date_appointment']).','.$id_specialist.',1,1)');
+			    }
 				$nv_Cache->delMod( $module_name );
 				Header( 'Location: ' . NV_BASE_ADMINURL . 'index.php?' . NV_LANG_VARIABLE . '=' . NV_LANG_DATA . '&' . NV_NAME_VARIABLE . '=' . $module_name . '&' . NV_OP_VARIABLE . '=' . $op );
 				die();
@@ -255,6 +274,13 @@ if ( ! $nv_Request->isset_request( 'id', 'post,get' ) )
 	$sth->execute();
 }
 
+//chuyên khoa
+$array_id_specialist_kham_benh = array();
+$_sql = 'SELECT id,name_specialist FROM nv4_vi_kham_benh_specialist';
+$_query = $db->query($_sql);
+while ($_row = $_query->fetch()) {
+    $array_id_specialist_kham_benh[$_row['id']] = $_row;
+}
 
 $xtpl = new XTemplate( $op . '.tpl', NV_ROOTDIR . '/themes/' . $global_config['module_theme'] . '/modules/' . $module_file );
 $xtpl->assign( 'LANG', $lang_module );
@@ -274,9 +300,10 @@ foreach( $array_id_doctor_kham_benh as $value )
 	$xtpl->assign( 'OPTION', array(
 		'key' => $value['id'],
 		'title' => $value['name'],
-		'selected' => ($value['id'] == $row['id_doctor']) ? ' selected="selected"' : ''
+	    'selected' => ($value['id'] == $row['id_doctor'] || $value['id'] == $doctor) ? ' selected="selected"' : ''
 	) );
 	$xtpl->parse( 'main.select_id_doctor' );
+	
 }
 $xtpl->assign( 'Q', $q );
 
@@ -309,12 +336,21 @@ if( $show_view )
 		$view['id_doctor'] = $array_id_doctor_kham_benh[$view['id_doctor']]['name'];
 		$view['link_edit'] = NV_BASE_ADMINURL . 'index.php?' . NV_LANG_VARIABLE . '=' . NV_LANG_DATA . '&amp;' . NV_NAME_VARIABLE . '=' . $module_name . '&amp;' . NV_OP_VARIABLE . '=' . $op . '&amp;id=' . $view['id'];
 		$view['link_delete'] = NV_BASE_ADMINURL . 'index.php?' . NV_LANG_VARIABLE . '=' . NV_LANG_DATA . '&amp;' . NV_NAME_VARIABLE . '=' . $module_name . '&amp;' . NV_OP_VARIABLE . '=' . $op . '&amp;delete_id=' . $view['id'] . '&amp;delete_checkss=' . md5( $view['id'] . NV_CACHE_PREFIX . $client_info['session_id'] );
+		$view['money_medical'] = number_format($view['money_medical']);
 		$xtpl->assign( 'VIEW', $view );
 		$xtpl->parse( 'main.view.loop' );
 	}
 	$xtpl->parse( 'main.view' );
 }
 
+//chuyen khoa
+foreach ($array_id_specialist_kham_benh as $value) {
+    $xtpl->assign('OPTION', array(
+        'key' => $value['id'],
+        'title' => $value['name_specialist'],
+    ));
+    $xtpl->parse('main.select_id_specialist');
+}
 
 if( ! empty( $error ) )
 {
