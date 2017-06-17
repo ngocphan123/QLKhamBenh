@@ -106,7 +106,7 @@ $array_sex[1] = 'Nam';
 $array_sex[2] = 'Nữ';
 
 $array_id_specialist_kham_benh = array();
-$_sql = 'SELECT id,name_specialist FROM nv4_vi_kham_benh_specialist';
+$_sql = 'SELECT id,name_specialist FROM ' . NV_PREFIXLANG . '_' . $module_data . '_specialist';
 $_query = $db->query($_sql);
 while ($_row = $_query->fetch()) {
     $array_id_specialist_kham_benh[$_row['id']] = $_row;

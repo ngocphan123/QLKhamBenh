@@ -25,11 +25,10 @@
 		<table class="table table-striped table-bordered table-hover">
 			<thead>
 				<tr>
-					<th class="w100">{LANG.number}</th>
+					<th class="w100 text-center">{LANG.number}</th>
 					<th>{LANG.id_patient}</th>
 					<th>{LANG.id_doctor}</th>
 					<th>{LANG.date_medical}</th>
-					<th>{LANG.hour_medical}</th>
 					<th>{LANG.id_specialist}</th>
 					<th>{LANG.type}</th>
 					<th>{LANG.status}</th>
@@ -47,11 +46,10 @@
 			<tbody>
 				<!-- BEGIN: loop -->
 				<tr>
-					<td> {VIEW.number} </td>
-					<td> {VIEW.id_patient} </td>
+					<td class="text-center"> {VIEW.number} </td>
+					<td class="text-center"> {VIEW.id_patient} </td>
 					<td> {VIEW.id_doctor} </td>
 					<td> {VIEW.date_medical} </td>
-					<td> {VIEW.hours_medical} </td>
 					<td> {VIEW.id_specialist} </td>
 					<td> {VIEW.type} </td>
 					<td> {VIEW.status} </td>
