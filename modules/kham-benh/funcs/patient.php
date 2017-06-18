@@ -35,14 +35,15 @@ if ($nv_Request->isset_request('submit', 'post')) {
         $row['phone'] = 0;
         $row['sex'] = 0;
         $row['address'] = '';
-        $row['id_specialist'] = 0;
         $id_patient = $nv_Request->get_title('id_patient', 'post', '');
+       
+        $result_patient= $db->query('SELECT id FROM ' . NV_PREFIXLANG . '_' . $module_data . '_patient WHERE id ='.$id_patient)->fetch();
+        if(empty($result_patient['id'])) $error[] = $lang_module['error_id_patient'];
         if (empty($id_patient)) {
             $error[] = $lang_module['error_required_patient'];
         }
-        if (empty($error)) {
-            $str = explode('BN', $id_patient);
-            $sql = 'INSERT INTO ' . NV_PREFIXLANG . '_' . $module_data . '_order(id_patient, date_medical, hours_medical, id_specialist, type)VALUES(' . $str[1] . ',' . $row['date_medical'] . ',"' . $row['hour_medical'] . '",' . $row['id_specialist'] . ',' . $type . ')';
+        if (empty($error)) { 
+            $sql = 'INSERT INTO ' . NV_PREFIXLANG . '_' . $module_data . '_order(id_patient, date_medical, id_specialist, type)VALUES(' . $id_patient. ',' . $row['date_medical'] . ',' . $row['id_specialist'] . ',' . $type . ')';
             $db->query($sql);
             $nv_Cache->delMod($module_name);
             $notification = sprintf($lang_module['notification'], $id_patient);

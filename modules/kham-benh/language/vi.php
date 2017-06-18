@@ -80,3 +80,4 @@ $lang_module['type_1'] = 'Tái khám';
 //Lang for function order
 $lang_module['error_required_type'] = 'Lỗi: bạn cần nhập dữ liệu cho Kiểu khám';
 $lang_module['error_required_status'] = 'Lỗi: bạn cần nhập dữ liệu cho Trạng thái khám bệnh';
+$lang_module['error_id_patient'] = 'Mã bệnh nhân không tồn tại';

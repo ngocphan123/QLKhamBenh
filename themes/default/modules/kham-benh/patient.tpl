@@ -46,7 +46,7 @@
 				<div class="form-group">
 					<label class="col-sm-5 col-md-4 control-label"><strong>{LANG.phone}</strong> <span class="red">(*)</span></label>
 					<div class="col-sm-19 col-md-20">
-						<input class="form-control" type="text" name="phone" value="{ROW.phone}" pattern="^[0-9]*$"  required="required" />
+						<input class="form-control" type="text" name="phone" value="{ROW.phone}" pattern="^[0-9]*$" />
 					</div>
 				</div>
 				<div class="form-group">
