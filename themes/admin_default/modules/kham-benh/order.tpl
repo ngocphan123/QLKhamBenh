@@ -70,7 +70,7 @@
 <div class="panel-body">
 <form class="form-horizontal" action="{NV_BASE_ADMINURL}index.php?{NV_LANG_VARIABLE}={NV_LANG_DATA}&amp;{NV_NAME_VARIABLE}={MODULE_NAME}&amp;{NV_OP_VARIABLE}={OP}" method="post">
 	<input type="hidden" name="id" value="{ROW.id}" />
-	<input type="hidden" name="id_patient_edit" value="{ROW.id_patient}"" />
+	<input type="hidden" name="id_patient_edit" value="{ROW.id_patient}" />
 	<div class="form-group">
 		<label class="col-sm-5 col-md-4 control-label"><strong>{LANG.id_patient}</strong></label>
 		<div class="col-sm-19 col-md-20">
@@ -107,8 +107,10 @@
 	</div>
 	<div class="form-group" style="text-align: center"><input class="btn btn-primary" name="submit" type="submit" value="{LANG.save}" /></div>
 	<div class="form-group" style="text-align: center"><input class="btn btn-primary" name="confirm" type="submit" value="{LANG.confirm}" /></div>
+
 </form>
-</div></div>
+</div>
+</div>
 
 <script type="text/javascript">
 //<![CDATA[

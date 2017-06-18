@@ -102,3 +102,4 @@ $lang_module['error_required_id_doctor'] = 'Lỗi: bạn cần nhập dữ liệ
 $lang_module['error_required_prescription'] = 'Lỗi: bạn cần nhập dữ liệu cho Đơn thuốc';
 $lang_module['error_required_date_medical'] = 'Lỗi: bạn cần nhập dữ liệu cho Ngày khám';
 $lang_module['error_required_money_medical'] = 'Lỗi: bạn cần nhập dữ liệu cho Tiền khám';
+$lang_module['statistic'] = 'Thống kê';

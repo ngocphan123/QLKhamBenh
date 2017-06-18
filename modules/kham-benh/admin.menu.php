@@ -15,3 +15,4 @@ $submenu['patient'] = $lang_module['patient'];
 $submenu['specialist'] = $lang_module['specialist'];
 $submenu['order'] = $lang_module['order'];
 $submenu['history'] = $lang_module['history'];
+$submenu['statistic'] = $lang_module['statistic'];

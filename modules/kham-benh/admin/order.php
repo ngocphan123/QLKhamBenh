@@ -61,23 +61,27 @@ if ( $nv_Request->isset_request( 'submit', 'post' ) )
     } else {
         $row['date_medical'] = 0;
     }
-	//$row['id_specialist'] = $nv_Request->get_int( 'id_specialist', 'post', 0 );
-	//$row['type'] = $nv_Request->get_int( 'type', 'post', 0 );
-	//$row['status'] = $nv_Request->get_int( 'status', 'post', 0 );
+	$row['id_specialist'] = $nv_Request->get_int( 'id_specialist', 'post', 0 );
+	$row['type'] = $nv_Request->get_int( 'type', 'post', 0 );
+	$row['status'] = $nv_Request->get_int( 'status', 'post', 0 );
 
 	if( empty( $error ) )
 	{
 		try
 		{
-			if( empty( $row['id'] ) )
+			if(  $row['id'] ==0 )
 			{
 				$stmt = $db->prepare( 'INSERT INTO ' . NV_PREFIXLANG . '_' . $module_data . '_order (id_patient, id_doctor, date_medical, id_specialist, type, status) VALUES (:id_patient, :id_doctor, :date_medical, :id_specialist, :type, :status)' );
+				$stmt->bindParam( ':id_specialist', $row['id_specialist'], PDO::PARAM_INT );
+				$stmt->bindParam( ':type', $row['type'], PDO::PARAM_INT );
+				$stmt->bindParam( ':status', $row['status'], PDO::PARAM_INT );
+				$stmt->bindParam( ':id_patient', $row['id_patient'], PDO::PARAM_INT );
 			}
 			else
 			{
-				$stmt = $db->prepare( 'UPDATE ' . NV_PREFIXLANG . '_' . $module_data . '_order SET id_patient = :id_patient, id_doctor = :id_doctor, date_medical = :date_medical WHERE id=' . $row['id'] );
+				$stmt = $db->prepare( 'UPDATE ' . NV_PREFIXLANG . '_' . $module_data . '_order SET id_doctor = :id_doctor, date_medical = :date_medical WHERE id=' . $row['id'] );
 			}
-			$stmt->bindParam( ':id_patient', $row['id_patient'], PDO::PARAM_INT );
+
 			$stmt->bindParam( ':id_doctor', $row['id_doctor'], PDO::PARAM_INT );
 			$stmt->bindParam( ':date_medical', $row['date_medical'], PDO::PARAM_INT );
 			//$stmt->bindParam( ':id_specialist', $row['id_specialist'], PDO::PARAM_INT );
@@ -144,7 +148,7 @@ if ( $nv_Request->isset_request( 'confirm', 'post' ) )
 			if( $exc )
 					{
 						//Gửi email cho khách hàng xác nhận lịch khám
-						$cus = $db->query( 'SELECT * FROM ' . NV_PREFIXLANG . '_' . $module_data . '_patient WHERE id=' . $row['id'] )->fetch();
+						$cus = $db->query( 'SELECT * FROM ' . NV_PREFIXLANG . '_' . $module_data . '_patient WHERE id=' . $row['id_patient'] )->fetch();
 						$cus['date_medical'] = nv_date('d/m/Y', $row['date_medical']);
 						 $array_id_doctor_kham_benh = array();
 						$where ='';
@@ -262,7 +266,7 @@ $xtpl->assign( 'MODULE_UPLOAD', $module_upload );
 $xtpl->assign( 'NV_ASSETS_DIR', NV_ASSETS_DIR );
 $xtpl->assign( 'OP', $op );
 $xtpl->assign( 'ROW', $row );
-if(!empty($row['id'])) 
+if(!empty($row['id']))
     $xtpl->assign( 'DISABLED', 'disabled' );
 
 foreach( $array_id_doctor_kham_benh as $value )
